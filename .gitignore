@@ -1,0 +1,7 @@
+.vscode/
+.vs/
+bin/
+obj/
+appsettings.Development.json
+appsettings.json
+quickprofixer.http
