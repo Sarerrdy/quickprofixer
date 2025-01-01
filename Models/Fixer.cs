@@ -11,12 +11,12 @@ namespace QuickProFixer.Models
 		/// <summary>
 		/// Gets or sets the skill category of the fixer.
 		/// </summary>
-		public required string SkillCategory { get; set; }
+		public required string Specializations { get; set; }
 
 		/// <summary>
 		/// Gets or sets the certifications of the fixer.
 		/// </summary>
-		public string Certifications { get; set; } = string.Empty;
+		public string? Certifications { get; set; }
 
 		/// <summary>
 		/// Gets or sets the verification document of the fixer.
@@ -52,5 +52,27 @@ namespace QuickProFixer.Models
 		/// Gets or sets the reviews of the fixer.
 		/// </summary>
 		public string Reviews { get; set; } = string.Empty;
+
+
+		/// <summary>
+		/// Gets or sets the years of experience of the fixer.
+		/// </summary>
+		public int ExperienceYears { get; set; }
+
+		/// <summary>
+		/// Gets or sets the portfolio of the fixer.
+		/// </summary>
+		public string Portfolio { get; set; } = string.Empty;
+
+		/// <summary>
+		/// Gets or sets the rate type of the fixer (e.g., per hour, per day, per square meter).
+		/// </summary>
+		public required string RateType { get; set; }
+
+		/// <summary>
+		/// Gets or sets the rate of the fixer (cost per hour, sqm, etc.).
+		/// </summary>
+		public decimal Rate { get; set; }
+		public ICollection<ClientRating> ClientRatings { get; set; } = new List<ClientRating>(); // Navigation property
 	}
 }

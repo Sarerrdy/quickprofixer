@@ -13,15 +13,17 @@ namespace QuickProFixer.Services
         /// Registers a new Fixer.
         /// </summary>
         /// <param name="fixerDto">The Fixer data transfer object.</param>
+        /// <param name="password">The password for the Fixer.</param>
         /// <returns>The registered Fixer.</returns>
-        Task<Fixer> RegisterFixerAsync(FixerDto fixerDto);
+        Task<Fixer> RegisterFixerAsync(FixerDto fixerDto, string password);
 
         /// <summary>
         /// Registers a new Client.
         /// </summary>
         /// <param name="clientDto">The Client data transfer object.</param>
+        /// <param name="password">The password for the Client.</param>
         /// <returns>The registered Client.</returns>
-        Task<Client> RegisterClientAsync(ClientDto clientDto);
+        Task<Client> RegisterClientAsync(ClientDto clientDto, string password);
 
         /// <summary>
         /// Uploads a verification document for a user.

@@ -24,9 +24,10 @@ namespace QuickProFixer.Services
 				Email = fixerDto.Email,
 				PhoneNumber = fixerDto.PhoneNumber,
 				Location = fixerDto.Location,
-				// Password = fixerDto.Password,
+				RateType = fixerDto.RateType,
+				Rate = fixerDto.Rate,
 				Address = fixerDto.Address,
-				SkillCategory = fixerDto.SkillCategory,
+				Specializations = fixerDto.Specializations,
 				Certifications = fixerDto.Certifications,
 				VerificationDocument = fixerDto.VerificationDocument,
 				IsVerified = false
@@ -52,9 +53,8 @@ namespace QuickProFixer.Services
 			fixer.LastName = fixerDto.LastName;
 			fixer.Email = fixerDto.Email;
 			fixer.PhoneNumber = fixerDto.PhoneNumber;
-			// fixer.Password = fixerDto.Password;
 			fixer.Address = fixerDto.Address;
-			fixer.SkillCategory = fixerDto.SkillCategory;
+			fixer.Specializations = fixerDto.Specializations;
 			fixer.Certifications = fixerDto.Certifications;
 			fixer.VerificationDocument = fixerDto.VerificationDocument;
 			fixer.IsVerified = fixerDto.IsVerified;
@@ -64,7 +64,6 @@ namespace QuickProFixer.Services
 
 			return fixerDto;
 		}
-
 
 		public async Task<FixerDto?> GetFixerProfileAsync(int id)
 		{
@@ -76,18 +75,24 @@ namespace QuickProFixer.Services
 
 			return new FixerDto
 			{
-				Id = int.Parse(fixer.Id), // Ensure the returned DTO contains the fixer.Id,
+				Id = int.Parse(fixer.Id),
 				FirstName = fixer.FirstName,
 				LastName = fixer.LastName,
-				Email = fixer.Email ?? string.Empty,
 				PhoneNumber = fixer.PhoneNumber ?? string.Empty,
-				// Password = fixer.Password,
-				Address = fixer.Address,
+				Email = fixer.Email ?? string.Empty,
+				Specializations = fixer.Specializations,
+				Certifications = fixer.Certifications,
+				Rating = fixer.Rating,
 				Location = fixer.Location,
-				SkillCategory = fixer.SkillCategory,
-				Certifications = fixer.Certifications ?? string.Empty,
-				VerificationDocument = fixer.VerificationDocument ?? string.Empty,
-				IsVerified = fixer.IsVerified
+				IsAvailable = fixer.IsAvailable,
+				Address = fixer.Address,
+				VerificationDocument = fixer.VerificationDocument,
+				IsVerified = fixer.IsVerified,
+				Reviews = fixer.Reviews,
+				ExperienceYears = fixer.ExperienceYears,
+				Portfolio = fixer.Portfolio,
+				RateType = fixer.RateType,
+				Rate = fixer.Rate
 			};
 		}
 
@@ -125,7 +130,6 @@ namespace QuickProFixer.Services
 			client.LastName = clientDto.LastName;
 			client.Email = clientDto.Email;
 			client.PhoneNumber = clientDto.PhoneNumber;
-			// client.Password = clientDto.Password;
 			client.Address = clientDto.Address;
 			client.VerificationDocument = clientDto.VerificationDocument;
 			client.IsVerified = clientDto.IsVerified;

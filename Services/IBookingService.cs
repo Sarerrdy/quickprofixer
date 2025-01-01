@@ -1,4 +1,3 @@
-// File: Services/IBookingService.cs
 using QuickProFixer.DTOs;
 using QuickProFixer.Models;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 namespace QuickProFixer.Services
 {
 	/// <summary>
-	/// Interface for booking service.
+	/// Defines methods for managing bookings.
 	/// </summary>
 	public interface IBookingService
 	{
@@ -38,5 +37,20 @@ namespace QuickProFixer.Services
 		/// <param name="fixerId">The fixer ID.</param>
 		/// <returns>The fixer.</returns>
 		Task<Fixer?> GetFixerByIdAsync(string fixerId);
+
+		/// <summary>
+		/// Updates the status of a booking.
+		/// </summary>
+		/// <param name="bookingId">The booking ID.</param>
+		/// <param name="status">The new status.</param>
+		/// <returns>A boolean indicating whether the update was successful.</returns>
+		Task<bool> UpdateBookingStatusAsync(int bookingId, string status);
+
+		/// <summary>
+		/// Confirms the completion of a job.
+		/// </summary>
+		/// <param name="bookingId">The booking ID.</param>
+		/// <returns>A boolean indicating whether the confirmation was successful.</returns>
+		Task<bool> ConfirmJobCompletionAsync(int bookingId);
 	}
 }

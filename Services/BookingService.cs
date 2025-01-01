@@ -19,6 +19,7 @@ namespace QuickProFixer.Services
 		private readonly ApplicationDbContext _context;
 		private readonly IHubContext<NotificationHub> _hubContext;
 		private readonly IEmailService _emailService;
+		private readonly IPaymentService _paymentService;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BookingService"/> class.
@@ -26,11 +27,13 @@ namespace QuickProFixer.Services
 		/// <param name="context">The application database context.</param>
 		/// <param name="hubContext">The SignalR hub context.</param>
 		/// <param name="emailService">The email service.</param>
-		public BookingService(ApplicationDbContext context, IHubContext<NotificationHub> hubContext, IEmailService emailService)
+		///  /// <param name="paymentService">The payment service.</param>
+		public BookingService(ApplicationDbContext context, IHubContext<NotificationHub> hubContext, IEmailService emailService, IPaymentService paymentService)
 		{
 			_context = context;
 			_hubContext = hubContext;
 			_emailService = emailService;
+			_paymentService = paymentService;
 		}
 
 		/// <summary>
@@ -139,6 +142,53 @@ namespace QuickProFixer.Services
 		public async Task<Fixer?> GetFixerByIdAsync(string fixerId)
 		{
 			return await _context.Fixers.FindAsync(fixerId);
+		}
+
+		/// <summary>
+		/// Updates the status of a booking.
+		/// </summary>
+		/// <param name="bookingId">The booking ID.</param>
+		/// <param name="status">The new status.</param>
+		/// <returns>A boolean indicating whether the update was successful.</returns>
+		public async Task<bool> UpdateBookingStatusAsync(int bookingId, string status)
+		{
+			var booking = await _context.Bookings.FindAsync(bookingId);
+			if (booking == null)
+			{
+				return false;
+			}
+
+			booking.Status = status;
+			_context.Bookings.Update(booking);
+			await _context.SaveChangesAsync();
+
+			// Notify client and fixer about the status update
+			await _hubContext.Clients.User(booking.ClientId).SendAsync("ReceiveNotification", $"Booking status updated to {status}");
+			await _hubContext.Clients.User(booking.FixerId).SendAsync("ReceiveNotification", $"Booking status updated to {status}");
+
+			return true;
+		}
+
+		public async Task<bool> ConfirmJobCompletionAsync(int bookingId)
+		{
+			var booking = await _context.Bookings.FindAsync(bookingId);
+			if (booking == null || booking.Status != "Completed")
+			{
+				return false;
+			}
+
+			booking.IsCompleted = true;
+			_context.Bookings.Update(booking);
+			await _context.SaveChangesAsync();
+
+			// Release payment from escrow
+			await _paymentService.CompleteFixerPaymentAsync(bookingId);
+
+			// Notify client and fixer about the job completion
+			await _hubContext.Clients.User(booking.ClientId).SendAsync("ReceiveNotification", "Job has been marked as completed.");
+			await _hubContext.Clients.User(booking.FixerId).SendAsync("ReceiveNotification", "Job has been marked as completed.");
+
+			return true;
 		}
 	}
 }

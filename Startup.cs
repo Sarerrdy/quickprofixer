@@ -68,6 +68,10 @@ namespace QuickProFixer
 				options.ClientSecret = Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret is not configured.");
 			});
 
+			// Register HttpClient
+			services.AddHttpClient();
+
+
 			// Add services to the container.
 			services.AddControllers();
 
@@ -82,6 +86,8 @@ namespace QuickProFixer
 			services.AddScoped<IEmailService, EmailService>();
 			services.AddScoped<IBookingService, BookingService>();
 			services.AddScoped<IRatingService, RatingService>();
+			services.AddScoped<IDashboardService, DashboardService>();
+			services.AddScoped<IPaymentService, PaymentService>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

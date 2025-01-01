@@ -50,5 +50,33 @@ namespace QuickProFixer.Controllers
 			}
 			return Ok(fixRequest);
 		}
+
+		/// <summary>
+		/// Accept a fix request.
+		/// </summary>
+		[HttpPost("fix-requests/{id}/accept")]
+		public async Task<IActionResult> AcceptFixRequest(int id, [FromQuery] string fixerId)
+		{
+			var result = await _fixRequestService.AcceptFixRequestAsync(id, fixerId);
+			if (!result)
+			{
+				return BadRequest("Unable to accept fix request.");
+			}
+			return Ok("Fix request accepted.");
+		}
+
+		/// <summary>
+		/// Reject a fix request.
+		/// </summary>
+		[HttpPost("fix-requests/{id}/reject")]
+		public async Task<IActionResult> RejectFixRequest(int id, [FromQuery] string fixerId)
+		{
+			var result = await _fixRequestService.RejectFixRequestAsync(id, fixerId);
+			if (!result)
+			{
+				return BadRequest("Unable to reject fix request.");
+			}
+			return Ok("Fix request rejected.");
+		}
 	}
 }

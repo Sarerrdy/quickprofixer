@@ -90,15 +90,16 @@ namespace QuickProFixer.Services
 			};
 		}
 
-		public async Task<PaymentDto?> CompleteFixerPaymentAsync(int paymentId)
+		public async Task<PaymentDto?> CompleteFixerPaymentAsync(int bookingId)
 		{
-			var payment = await _context.Payments.FindAsync(paymentId);
+			var payment = await _context.Payments.FirstOrDefaultAsync(p => p.BookingId == bookingId);
 			if (payment == null)
 			{
-				return null; // Ensure payment exists
+				return null;
 			}
 
-			payment.FixerPaymentStatus = "Completed"; // Fixer payment status is set to 'Completed'
+			payment.FixerPaymentStatus = "Completed";
+			_context.Payments.Update(payment);
 			await _context.SaveChangesAsync();
 
 			return new PaymentDto

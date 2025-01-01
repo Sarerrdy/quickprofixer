@@ -14,5 +14,8 @@ namespace QuickProFixer.Models
         public required string ClientId { get; set; }
         public Fixer? Fixer { get; set; }
         public required string Status { get; set; } // Status tracking (e.g., "Pending", "Accepted", "Rejected")
+        public SupportingFile? SupportingImage { get; set; } // Single supporting image
+        public SupportingFile? SupportingDocument { get; set; } // Single supporting document
+        public List<string> SupportingFiles { get; set; } = new List<string>(); // List of supporting file links
     }
 }

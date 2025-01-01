@@ -45,5 +45,15 @@ namespace QuickProFixer.Controllers
 			return BadRequest(new ApprovalResponseDto { Message = "Failed to approve profile." });
 		}
 
+		/// <summary>
+		/// Gets platform analytics for the admin dashboard.
+		/// </summary>
+		/// <returns>An IActionResult containing the platform analytics data.</returns>
+		[HttpGet("analytics")]
+		public async Task<IActionResult> GetPlatformAnalytics()
+		{
+			var analytics = await _adminService.GetPlatformAnalyticsAsync();
+			return Ok(analytics);
+		}
 	}
 }

@@ -27,14 +27,26 @@ namespace QuickProFixer.Services
 				PreferredSchedule = fixRequestDto.PreferredSchedule,
 				FixerIds = fixRequestDto.FixerIds,
 				ClientId = fixRequestDto.ClientId,
-				Status = "Pending" // Initial status
+				Status = "Pending",
+				SupportingImage = fixRequestDto.SupportingImage != null ? new SupportingFile
+				{
+					FileName = fixRequestDto.SupportingImage.FileName,
+					FileType = fixRequestDto.SupportingImage.FileType,
+					FileUrl = fixRequestDto.SupportingImage.FileUrl
+				} : null,
+				SupportingDocument = fixRequestDto.SupportingDocument != null ? new SupportingFile
+				{
+					FileName = fixRequestDto.SupportingDocument.FileName,
+					FileType = fixRequestDto.SupportingDocument.FileType,
+					FileUrl = fixRequestDto.SupportingDocument.FileUrl
+				} : null,
+				SupportingFiles = fixRequestDto.SupportingFiles
 			};
 
 			_context.FixRequests.Add(fixRequest);
 			await _context.SaveChangesAsync();
 
-			// Send notifications to selected fixers (Email and SMS logic here)
-
+			fixRequestDto.Id = fixRequest.Id;
 			return fixRequestDto;
 		}
 
@@ -51,14 +63,33 @@ namespace QuickProFixer.Services
 					PreferredSchedule = fr.PreferredSchedule,
 					FixerIds = fr.FixerIds,
 					ClientId = fr.ClientId,
-					Status = fr.Status
+					Status = fr.Status,
+					SupportingImage = fr.SupportingImage != null ? new SupportingFileDto
+					{
+						Id = fr.SupportingImage.Id,
+						FileName = fr.SupportingImage.FileName,
+						FileType = fr.SupportingImage.FileType,
+						FileUrl = fr.SupportingImage.FileUrl
+					} : null,
+					SupportingDocument = fr.SupportingDocument != null ? new SupportingFileDto
+					{
+						Id = fr.SupportingDocument.Id,
+						FileName = fr.SupportingDocument.FileName,
+						FileType = fr.SupportingDocument.FileType,
+						FileUrl = fr.SupportingDocument.FileUrl
+					} : null,
+					SupportingFiles = fr.SupportingFiles
 				})
 				.ToListAsync();
 		}
 
 		public async Task<FixRequestDto?> GetFixRequestByIdAsync(int id)
 		{
-			var fixRequest = await _context.FixRequests.FindAsync(id);
+			var fixRequest = await _context.FixRequests
+				.Include(fr => fr.SupportingImage)
+				.Include(fr => fr.SupportingDocument)
+				.FirstOrDefaultAsync(fr => fr.Id == id);
+
 			if (fixRequest == null)
 			{
 				return null;
@@ -73,10 +104,24 @@ namespace QuickProFixer.Services
 				PreferredSchedule = fixRequest.PreferredSchedule,
 				FixerIds = fixRequest.FixerIds,
 				ClientId = fixRequest.ClientId,
-				Status = fixRequest.Status
+				Status = fixRequest.Status,
+				SupportingImage = fixRequest.SupportingImage != null ? new SupportingFileDto
+				{
+					Id = fixRequest.SupportingImage.Id,
+					FileName = fixRequest.SupportingImage.FileName,
+					FileType = fixRequest.SupportingImage.FileType,
+					FileUrl = fixRequest.SupportingImage.FileUrl
+				} : null,
+				SupportingDocument = fixRequest.SupportingDocument != null ? new SupportingFileDto
+				{
+					Id = fixRequest.SupportingDocument.Id,
+					FileName = fixRequest.SupportingDocument.FileName,
+					FileType = fixRequest.SupportingDocument.FileType,
+					FileUrl = fixRequest.SupportingDocument.FileUrl
+				} : null,
+				SupportingFiles = fixRequest.SupportingFiles
 			};
 		}
-
 
 		public async Task<bool> AcceptFixRequestAsync(int requestId, string fixerId)
 		{

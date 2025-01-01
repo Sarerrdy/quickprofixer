@@ -70,6 +70,40 @@ namespace QuickProFixer.Controllers
 		}
 
 		/// <summary>
+		/// Updates the status of a booking.
+		/// </summary>
+		/// <param name="id">The booking ID.</param>
+		/// <param name="status">The new status.</param>
+		/// <returns>An action result.</returns>
+		[HttpPost("{id}/status")]
+		public async Task<IActionResult> UpdateBookingStatus(int id, [FromQuery] string status)
+		{
+			var result = await _bookingService.UpdateBookingStatusAsync(id, status);
+			if (!result)
+			{
+				return BadRequest("Unable to update booking status.");
+			}
+			return Ok("Booking status updated.");
+		}
+
+
+		/// <summary>
+		/// Confirms the completion of a job.
+		/// </summary>
+		/// <param name="id">The booking ID.</param>
+		/// <returns>An action result.</returns>
+		[HttpPost("{id}/complete")]
+		public async Task<IActionResult> ConfirmJobCompletion(int id)
+		{
+			var result = await _bookingService.ConfirmJobCompletionAsync(id);
+			if (!result)
+			{
+				return BadRequest("Unable to confirm job completion.");
+			}
+			return Ok("Job completion confirmed.");
+		}
+
+		/// <summary>
 		/// Sends booking notifications.
 		/// </summary>
 		/// <param name="bookingDto">The booking data transfer object.</param>

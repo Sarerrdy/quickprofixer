@@ -20,18 +20,27 @@ namespace QuickProFixer.Services
 		public async Task<IEnumerable<FixerDto>> SearchFixersAsync(string skillCategory, string location, double minRating)
 		{
 			return await _context.Fixers
-				.Where(f => f.SkillCategory == skillCategory && f.Location == location && f.Rating >= minRating)
+				.Where(f => f.Specializations == skillCategory && f.Location == location && f.Rating >= minRating)
 				.Select(f => new FixerDto
 				{
+					Id = int.Parse(f.Id),
 					FirstName = f.FirstName,
 					LastName = f.LastName,
 					PhoneNumber = f.PhoneNumber ?? string.Empty,
 					Email = f.Email ?? string.Empty,
-					SkillCategory = f.SkillCategory,
+					Specializations = f.Specializations,
 					Certifications = f.Certifications,
 					Rating = f.Rating,
 					Location = f.Location,
-					IsAvailable = f.IsAvailable
+					IsAvailable = f.IsAvailable,
+					Address = f.Address,
+					VerificationDocument = f.VerificationDocument,
+					IsVerified = f.IsVerified,
+					Reviews = f.Reviews,
+					ExperienceYears = f.ExperienceYears,
+					Portfolio = f.Portfolio,
+					RateType = f.RateType,
+					Rate = f.Rate
 				})
 				.ToListAsync();
 		}
@@ -40,18 +49,27 @@ namespace QuickProFixer.Services
 		{
 			// Assuming there's a Price and Distance properties in Fixer model
 			return await _context.Fixers
-				.Where(f => f.SkillCategory == skillType && f.IsAvailable == isAvailable)
+				.Where(f => f.Specializations == skillType && f.IsAvailable == isAvailable)
 				.Select(f => new FixerDto
 				{
+					Id = int.Parse(f.Id),
 					FirstName = f.FirstName,
 					LastName = f.LastName,
 					PhoneNumber = f.PhoneNumber ?? string.Empty,
 					Email = f.Email ?? string.Empty,
-					SkillCategory = f.SkillCategory,
+					Specializations = f.Specializations,
 					Certifications = f.Certifications,
 					Rating = f.Rating,
 					Location = f.Location,
-					IsAvailable = f.IsAvailable
+					IsAvailable = f.IsAvailable,
+					Address = f.Address,
+					VerificationDocument = f.VerificationDocument,
+					IsVerified = f.IsVerified,
+					Reviews = f.Reviews,
+					ExperienceYears = f.ExperienceYears,
+					Portfolio = f.Portfolio,
+					RateType = f.RateType,
+					Rate = f.Rate
 				})
 				.ToListAsync();
 		}
@@ -66,15 +84,24 @@ namespace QuickProFixer.Services
 
 			return new FixerDto
 			{
+				Id = int.Parse(fixer.Id),
 				FirstName = fixer.FirstName,
 				LastName = fixer.LastName,
-				Email = fixer.Email ?? string.Empty,
 				PhoneNumber = fixer.PhoneNumber ?? string.Empty,
-				SkillCategory = fixer.SkillCategory,
+				Email = fixer.Email ?? string.Empty,
+				Specializations = fixer.Specializations,
 				Certifications = fixer.Certifications,
 				Rating = fixer.Rating,
 				Location = fixer.Location,
-				IsAvailable = fixer.IsAvailable
+				IsAvailable = fixer.IsAvailable,
+				Address = fixer.Address,
+				VerificationDocument = fixer.VerificationDocument,
+				IsVerified = fixer.IsVerified,
+				Reviews = fixer.Reviews,
+				ExperienceYears = fixer.ExperienceYears,
+				Portfolio = fixer.Portfolio,
+				RateType = fixer.RateType,
+				Rate = fixer.Rate
 			};
 		}
 	}

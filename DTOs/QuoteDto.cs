@@ -12,5 +12,9 @@ namespace QuickProFixer.DTOs
 		public required string Description { get; set; }
 		public decimal Amount { get; set; }
 		public DateTime CreatedAt { get; set; }
+		public List<QuoteItemDto> Items { get; set; } = new List<QuoteItemDto>();
+		public SupportingFileDto? SupportingImage { get; set; } // Single supporting image
+		public SupportingFileDto? SupportingDocument { get; set; } // Single supporting document
+		public List<string> SupportingFiles { get; set; } = new List<string>(); // List of supporting file links
 	}
 }

@@ -27,5 +27,7 @@ namespace QuickProFixer.Models
 		/// Indicates whether the client is verified.
 		/// </summary>
 		public bool IsVerified { get; set; } = false;
+
+		public ICollection<FixerRating> FixerRatings { get; set; } = new List<FixerRating>(); // Navigation property
 	}
 }

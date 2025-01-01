@@ -1,6 +1,7 @@
 using QuickProFixer.DTOs;
 using QuickProFixer.Models;
 using QuickProFixer.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -12,59 +13,76 @@ namespace QuickProFixer.Services
 	public class AccountService : IAccountService
 	{
 		private readonly ApplicationDbContext _context;
+		private readonly UserManager<ApplicationUser> _userManager;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AccountService"/> class.
 		/// </summary>
 		/// <param name="context">The application database context.</param>
-		public AccountService(ApplicationDbContext context)
+		/// <param name="userManager">The user manager for handling user-related operations.</param>
+		public AccountService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
 		{
 			_context = context;
+			_userManager = userManager;
 		}
 
 		/// <inheritdoc />
-		public async Task<Fixer> RegisterFixerAsync(FixerDto fixerDto)
+		public async Task<Fixer> RegisterFixerAsync(FixerDto fixerDto, string password)
 		{
 			var fixer = new Fixer
 			{
+				UserName = fixerDto.Email,
+				Email = fixerDto.Email,
 				FirstName = fixerDto.FirstName,
 				LastName = fixerDto.LastName,
-				Email = fixerDto.Email,
 				PhoneNumber = fixerDto.PhoneNumber,
-				Location = fixerDto.Location,
-				// Password = fixerDto.Password, // In a real implementation, hash the password
-				Address = fixerDto.Address,
-				SkillCategory = fixerDto.SkillCategory,
+				Specializations = fixerDto.Specializations,
 				Certifications = fixerDto.Certifications,
 				VerificationDocument = fixerDto.VerificationDocument,
-				IsVerified = false
+				IsVerified = false,
+				Rating = fixerDto.Rating,
+				Location = fixerDto.Location,
+				IsAvailable = fixerDto.IsAvailable,
+				Address = fixerDto.Address,
+				Reviews = fixerDto.Reviews,
+				ExperienceYears = fixerDto.ExperienceYears,
+				Portfolio = fixerDto.Portfolio,
+				RateType = fixerDto.RateType,
+				Rate = fixerDto.Rate
 			};
 
-			_context.Fixers.Add(fixer);
-			await _context.SaveChangesAsync();
+			var result = await _userManager.CreateAsync(fixer, password);
+			if (result.Succeeded)
+			{
+				return fixer;
+			}
 
-			return fixer;
+			throw new Exception("Failed to register fixer.");
 		}
 
 		/// <inheritdoc />
-		public async Task<Client> RegisterClientAsync(ClientDto clientDto)
+		public async Task<Client> RegisterClientAsync(ClientDto clientDto, string password)
 		{
 			var client = new Client
 			{
+				UserName = clientDto.Email,
+				Email = clientDto.Email,
 				FirstName = clientDto.FirstName,
 				LastName = clientDto.LastName,
-				Email = clientDto.Email,
 				PhoneNumber = clientDto.PhoneNumber,
-				Location = clientDto.Location,
 				Address = clientDto.Address,
+				Location = clientDto.Location,
 				VerificationDocument = clientDto.VerificationDocument,
-				IsVerified = false
+				IsVerified = clientDto.IsVerified
 			};
 
-			_context.Clients.Add(client);
-			await _context.SaveChangesAsync();
+			var result = await _userManager.CreateAsync(client, password);
+			if (result.Succeeded)
+			{
+				return client;
+			}
 
-			return client;
+			throw new Exception("Failed to register client.");
 		}
 
 		/// <inheritdoc />

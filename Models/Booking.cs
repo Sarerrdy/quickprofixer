@@ -13,6 +13,7 @@ namespace QuickProFixer.Models
 		public required int QuoteId { get; set; }
 		public required Quote Quote { get; set; }
 		public DateTime BookingDate { get; set; }
-		public string Status { get; set; } = "Pending";
+		public string Status { get; set; } = "Pending"; // Status tracking (e.g., "Pending", "In Progress", "Completed")
+		public bool IsCompleted { get; set; } = false; // Job completion confirmations
 	}
 }
