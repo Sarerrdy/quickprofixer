@@ -68,6 +68,16 @@ namespace QuickProFixer
 				options.ClientSecret = Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret is not configured.");
 			});
 
+			// Add CORS services
+			services.AddCors(options =>
+			{
+				options.AddPolicy("AllowSpecificOrigin",
+					builder => builder
+						.WithOrigins("http://localhost:5173") // Add your frontend URL here
+						.AllowAnyHeader()
+						.AllowAnyMethod());
+			});
+
 			// Register HttpClient
 			services.AddHttpClient();
 
@@ -88,6 +98,10 @@ namespace QuickProFixer
 			services.AddScoped<IRatingService, RatingService>();
 			services.AddScoped<IDashboardService, DashboardService>();
 			services.AddScoped<IPaymentService, PaymentService>();
+
+			// Add logging
+
+			services.AddLogging();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -98,6 +112,9 @@ namespace QuickProFixer
 			}
 
 			app.UseRouting();
+
+			// Enable CORS
+			app.UseCors("AllowSpecificOrigin");
 
 			// Enable authentication and authorization
 			app.UseAuthentication();

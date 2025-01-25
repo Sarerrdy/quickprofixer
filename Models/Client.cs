@@ -8,15 +8,17 @@ namespace QuickProFixer.Models
 	/// </summary>
 	public class Client : ApplicationUser
 	{
+		public string ImgUrl { get; set; } = string.Empty;
+
 		/// <summary>
 		/// Gets or sets the address of the client.
 		/// </summary>
-		public required string Address { get; set; }
+		public string Address { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the location of the fixer.
 		/// </summary>
-		public required string Location { get; set; }
+		public string Location { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the document used for client verification.
@@ -28,6 +30,7 @@ namespace QuickProFixer.Models
 		/// </summary>
 		public bool IsVerified { get; set; } = false;
 
+		public string CurrentRole { get; set; } = "Client"; // Default role
 		public ICollection<FixerRating> FixerRatings { get; set; } = new List<FixerRating>(); // Navigation property
 	}
 }

@@ -35,7 +35,9 @@ namespace QuickProFixer.Services
 				Email = fixerDto.Email,
 				FirstName = fixerDto.FirstName,
 				LastName = fixerDto.LastName,
+				MiddleName = fixerDto.MiddleName,
 				PhoneNumber = fixerDto.PhoneNumber,
+				ImgUrl = fixerDto.ImgUrl ?? string.Empty,
 				Specializations = fixerDto.Specializations,
 				Certifications = fixerDto.Certifications,
 				VerificationDocument = fixerDto.VerificationDocument,
@@ -69,9 +71,11 @@ namespace QuickProFixer.Services
 				Email = clientDto.Email,
 				FirstName = clientDto.FirstName,
 				LastName = clientDto.LastName,
+				MiddleName = clientDto.MiddleName,
 				PhoneNumber = clientDto.PhoneNumber,
 				Address = clientDto.Address,
 				Location = clientDto.Location,
+				ImgUrl = clientDto.ImgUrl ?? string.Empty,
 				VerificationDocument = clientDto.VerificationDocument,
 				IsVerified = clientDto.IsVerified
 			};

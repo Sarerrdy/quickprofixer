@@ -8,11 +8,17 @@ namespace QuickProFixer.DTOs
 		/// <summary> 
 		/// Gets or sets the ID of the Client. 
 		/// /// </summary> 
-		public int Id { get; set; }
+		public string Id { get; set; } = string.Empty;
 		/// <summary>
 		/// Gets or sets the first name of the Client.
 		/// </summary>
 		public required string FirstName { get; set; }
+
+		/// <summary>
+		/// Gets or sets the middle name of the Client.
+		/// </summary>
+		public string? MiddleName { get; set; } = string.Empty;
+
 		/// <summary>
 		/// Gets or sets the last name of the Client.
 		/// </summary>
@@ -28,11 +34,7 @@ namespace QuickProFixer.DTOs
 		/// </summary>
 		public required string PhoneNumber { get; set; }
 
-		/// <summary>
-		/// Gets or sets the password of the Client.
-		/// </summary>
-		// public required string Password { get; set; }  // In a real implementation, hash the password
-
+		public string? ImgUrl { get; set; }
 		/// <summary>
 		/// Gets or sets the address of the Client.
 		/// </summary>

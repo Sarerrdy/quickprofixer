@@ -2,14 +2,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using QuickProFixer.DTOs;
+using quickprofixer.DTOs;
 using QuickProFixer.Models;
 using QuickProFixer.Services;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace QuickProFixer.Controllers
 {
@@ -112,31 +110,31 @@ namespace QuickProFixer.Controllers
 			return new JwtSecurityTokenHandler().WriteToken(token);
 		}
 
-		[HttpPost("switch-role")]
-		[Authorize]
-		public async Task<IActionResult> SwitchRole([FromQuery] string newRole)
-		{
-			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-			if (userId == null)
-			{
-				return BadRequest("User ID is missing.");
-			}
+		// [HttpPost("switch-role")]
+		// [Authorize]
+		// public async Task<IActionResult> SwitchRole([FromQuery] string newRole)
+		// {
+		// 	var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+		// 	if (userId == null)
+		// 	{
+		// 		return BadRequest("User ID is missing.");
+		// 	}
 
-			var user = await _userManager.FindByIdAsync(userId);
-			if (user == null || (newRole != "Client" && newRole != "Fixer"))
-			{
-				return BadRequest("Invalid role or user not found.");
-			}
+		// 	var user = await _userManager.FindByIdAsync(userId);
+		// 	if (user == null || (newRole != "Client" && newRole != "Fixer"))
+		// 	{
+		// 		return BadRequest("Invalid role or user not found.");
+		// 	}
 
-			user.CurrentRole = newRole;
-			var result = await _userManager.UpdateAsync(user);
+		// 	user.CurrentRole = newRole;
+		// 	var result = await _userManager.UpdateAsync(user);
 
-			if (result.Succeeded)
-			{
-				return Ok(new { Message = $"Role switched to {newRole}." });
-			}
+		// 	if (result.Succeeded)
+		// 	{
+		// 		return Ok(new { Message = $"Role switched to {newRole}." });
+		// 	}
 
-			return BadRequest("Failed to switch role.");
-		}
+		// 	return BadRequest("Failed to switch role.");
+		// }
 	}
 }

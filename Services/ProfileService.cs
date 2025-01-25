@@ -21,9 +21,16 @@ namespace QuickProFixer.Services
 			{
 				FirstName = fixerDto.FirstName,
 				LastName = fixerDto.LastName,
+				MiddleName = fixerDto.MiddleName,
 				Email = fixerDto.Email,
 				PhoneNumber = fixerDto.PhoneNumber,
 				Location = fixerDto.Location,
+				ExperienceYears = fixerDto.ExperienceYears,
+				Portfolio = fixerDto.Portfolio,
+				Rating = fixerDto.Rating,
+				IsAvailable = fixerDto.IsAvailable,
+				Reviews = fixerDto.Reviews,
+				ImgUrl = fixerDto.ImgUrl ?? string.Empty,
 				RateType = fixerDto.RateType,
 				Rate = fixerDto.Rate,
 				Address = fixerDto.Address,
@@ -36,7 +43,7 @@ namespace QuickProFixer.Services
 			_context.Fixers.Add(fixer);
 			await _context.SaveChangesAsync();
 
-			fixerDto.Id = int.Parse(fixer.Id); // Ensure the returned DTO contains the ID
+			fixerDto.Id = fixer.Id; // Ensure the returned DTO contains the ID
 
 			return fixerDto;
 		}
@@ -51,9 +58,17 @@ namespace QuickProFixer.Services
 
 			fixer.FirstName = fixerDto.FirstName;
 			fixer.LastName = fixerDto.LastName;
+			fixer.MiddleName = fixerDto.MiddleName;
 			fixer.Email = fixerDto.Email;
 			fixer.PhoneNumber = fixerDto.PhoneNumber;
 			fixer.Address = fixerDto.Address;
+			fixer.ImgUrl = fixerDto.ImgUrl ?? string.Empty;
+			fixer.Location = fixerDto.Location;
+			fixer.Rating = fixerDto.Rating;
+			fixer.IsAvailable = fixerDto.IsAvailable;
+			fixer.Reviews = fixerDto.Reviews;
+			fixer.ExperienceYears = fixerDto.ExperienceYears;
+			fixer.Portfolio = fixerDto.Portfolio;
 			fixer.Specializations = fixerDto.Specializations;
 			fixer.Certifications = fixerDto.Certifications;
 			fixer.VerificationDocument = fixerDto.VerificationDocument;
@@ -75,9 +90,10 @@ namespace QuickProFixer.Services
 
 			return new FixerDto
 			{
-				Id = int.Parse(fixer.Id),
+				Id = fixer.Id,
 				FirstName = fixer.FirstName,
 				LastName = fixer.LastName,
+				MiddleName = fixer.MiddleName ?? string.Empty,
 				PhoneNumber = fixer.PhoneNumber ?? string.Empty,
 				Email = fixer.Email ?? string.Empty,
 				Specializations = fixer.Specializations,
@@ -85,6 +101,7 @@ namespace QuickProFixer.Services
 				Rating = fixer.Rating,
 				Location = fixer.Location,
 				IsAvailable = fixer.IsAvailable,
+				ImgUrl = fixer.ImgUrl,
 				Address = fixer.Address,
 				VerificationDocument = fixer.VerificationDocument,
 				IsVerified = fixer.IsVerified,
@@ -102,6 +119,8 @@ namespace QuickProFixer.Services
 			{
 				FirstName = clientDto.FirstName,
 				LastName = clientDto.LastName,
+				MiddleName = clientDto.MiddleName,
+				ImgUrl = clientDto.ImgUrl ?? string.Empty,
 				Email = clientDto.Email,
 				PhoneNumber = clientDto.PhoneNumber,
 				Location = clientDto.Location,
@@ -113,7 +132,7 @@ namespace QuickProFixer.Services
 			_context.Clients.Add(client);
 			await _context.SaveChangesAsync();
 
-			clientDto.Id = int.Parse(client.Id); // Ensure the returned DTO contains the ID
+			clientDto.Id = client.Id; // Ensure the returned DTO contains the ID
 
 			return clientDto;
 		}
@@ -128,6 +147,9 @@ namespace QuickProFixer.Services
 
 			client.FirstName = clientDto.FirstName;
 			client.LastName = clientDto.LastName;
+			client.MiddleName = clientDto.MiddleName;
+			client.ImgUrl = clientDto.ImgUrl ?? string.Empty;
+			client.Location = clientDto.Location;
 			client.Email = clientDto.Email;
 			client.PhoneNumber = clientDto.PhoneNumber;
 			client.Address = clientDto.Address;
@@ -150,9 +172,11 @@ namespace QuickProFixer.Services
 
 			return new ClientDto
 			{
-				Id = int.Parse(client.Id),
+				Id = client.Id,
 				FirstName = client.FirstName,
 				LastName = client.LastName,
+				MiddleName = client.MiddleName ?? string.Empty,
+				ImgUrl = client.ImgUrl ?? string.Empty,
 				Email = client.Email ?? string.Empty,
 				PhoneNumber = client.PhoneNumber ?? string.Empty,
 				Location = client.Location,

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickProFixer.Data;
 
@@ -11,9 +12,11 @@ using QuickProFixer.Data;
 namespace quickprofixer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250122133626_UpdateForeignKeyConstraints")]
+    partial class UpdateForeignKeyConstraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -625,7 +628,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "client1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d60b825c-b2c7-427a-80f2-ef754f78a08d",
+                            ConcurrencyStamp = "2d9db26f-7cff-410c-8e76-5db6566ed4c5",
                             Email = "john.doe@example.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -634,78 +637,32 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "JOHN.DOE@EXAMPLE.COM",
                             NormalizedUserName = "JOHN.DOE@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN6oZ+Il6m/CBpCjQKdyMI0TlhBWU1DyzM904VWcHStD5cRxgRGkCgVoKLTNHvmmGQ==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "534b4ab0-3ba2-403a-9022-95fa6de59525",
+                            SecurityStamp = "1efe2bcd-0993-4b61-9bf0-046ca78c20a8",
                             TwoFactorEnabled = false,
                             UserName = "john.doe@example.com",
                             Address = "123 Main St",
                             CurrentRole = "Client",
                             ImgUrl = "",
                             IsVerified = true,
-                            Location = "Portharcourt",
+                            Location = "Cityville",
                             VerificationDocument = "doc1.pdf"
-                        },
-                        new
-                        {
-                            Id = "client2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c5e2fa0-cde4-4ef2-adad-972f77ea9d3e",
-                            Email = "jane.doe@example.com",
-                            EmailConfirmed = true,
-                            FirstName = "Jane",
-                            LastName = "Doe",
-                            LockoutEnabled = false,
-                            MiddleName = "",
-                            NormalizedEmail = "JANE.DOE@EXAMPLE.COM",
-                            NormalizedUserName = "JANE.DOE@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOZoqyvbH5SIimhTh/36msXmuVmdILMvP3JcOzWyqQE4wy1x4CzcogOPefaQGW32UA==",
-                            PhoneNumber = "0987654321",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "a0f0511e-fae3-46a4-a649-72afcc1eea78",
-                            TwoFactorEnabled = false,
-                            UserName = "jane.doe@example.com",
-                            Address = "456 Elm St",
-                            CurrentRole = "Client",
-                            ImgUrl = "",
-                            IsVerified = true,
-                            Location = "Portharcourt",
-                            VerificationDocument = "doc2.pdf"
                         });
                 });
 
             modelBuilder.Entity("QuickProFixer.Models.Fixer", b =>
                 {
-                    b.HasBaseType("QuickProFixer.Models.ApplicationUser");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasBaseType("QuickProFixer.Models.Client");
 
                     b.Property<string>("Certifications")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CurrentRole")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ExperienceYears")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Portfolio")
                         .IsRequired()
@@ -729,10 +686,6 @@ namespace quickprofixer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VerificationDocument")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.ToTable("Fixers", (string)null);
 
                     b.HasData(
@@ -740,106 +693,35 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "177b33e8-5f79-40cf-bf5b-c208529adc16",
-                            Email = "alice.smith@example.com",
+                            ConcurrencyStamp = "16087ffc-7535-4409-ba15-54462728953d",
+                            Email = "jane.smith@example.com",
                             EmailConfirmed = true,
-                            FirstName = "Alice",
+                            FirstName = "Jane",
                             LastName = "Smith",
                             LockoutEnabled = false,
                             MiddleName = "",
-                            NormalizedEmail = "ALICE.SMITH@EXAMPLE.COM",
-                            NormalizedUserName = "ALICE.SMITH@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG0+tA5BG1+Ze0Wd6dAWGS4q6juGKaXDU8uwxrbV67HUa87gvVYWZjYDCaFW3kZuPw==",
-                            PhoneNumber = "1234567890",
+                            NormalizedEmail = "JANE.SMITH@EXAMPLE.COM",
+                            NormalizedUserName = "JANE.SMITH@EXAMPLE.COM",
+                            PhoneNumber = "0987654321",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "230a9aa3-31ba-4e62-b4bd-5255e4242b51",
+                            SecurityStamp = "2d8e594a-caaf-4824-b322-a80ea07d6e60",
                             TwoFactorEnabled = false,
-                            UserName = "alice.smith@example.com",
-                            Address = "789 Pine St",
-                            Certifications = "Certified Electrician",
-                            CurrentRole = "Fixer",
-                            ExperienceYears = 5,
+                            UserName = "jane.smith@example.com",
+                            Address = "456 Elm St",
+                            CurrentRole = "Client",
                             ImgUrl = "",
-                            IsAvailable = true,
                             IsVerified = true,
-                            Location = "Portharcourt",
-                            Portfolio = "portfolio1.pdf",
-                            Rate = 40.0m,
-                            RateType = "Per Hour",
-                            Rating = 4.7999999999999998,
-                            Reviews = "Great work",
-                            Specializations = "Electrical",
-                            VerificationDocument = "doc3.pdf"
-                        },
-                        new
-                        {
-                            Id = "fixer2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "478901e6-86f5-4070-860a-dbc6cd62c8ce",
-                            Email = "bob.johnson@example.com",
-                            EmailConfirmed = true,
-                            FirstName = "Bob",
-                            LastName = "Johnson",
-                            LockoutEnabled = false,
-                            MiddleName = "",
-                            NormalizedEmail = "BOB.JOHNSON@EXAMPLE.COM",
-                            NormalizedUserName = "BOB.JOHNSON@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDCQCcqhrKNBzp3vCuIR1OiiTW3XF9Z3K67wYIvxGXYufVKKe7o5X/k/oO95PDKwDQ==",
-                            PhoneNumber = "2345678901",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "cd884783-ca55-41f6-af78-f79c4163fef5",
-                            TwoFactorEnabled = false,
-                            UserName = "bob.johnson@example.com",
-                            Address = "101 Maple St",
+                            Location = "Townsville",
+                            VerificationDocument = "doc2.pdf",
                             Certifications = "Certified Plumber",
-                            CurrentRole = "Fixer",
                             ExperienceYears = 10,
-                            ImgUrl = "",
                             IsAvailable = true,
-                            IsVerified = true,
-                            Location = "Portharcourt",
-                            Portfolio = "portfolio2.pdf",
+                            Portfolio = "portfolio.pdf",
                             Rate = 50.0m,
                             RateType = "Per Hour",
                             Rating = 4.5,
                             Reviews = "Excellent service",
-                            Specializations = "Plumbing",
-                            VerificationDocument = "doc4.pdf"
-                        },
-                        new
-                        {
-                            Id = "fixer3",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f7ee293b-e00f-4c06-87b1-e452e0028012",
-                            Email = "charlie.brown@example.com",
-                            EmailConfirmed = true,
-                            FirstName = "Charlie",
-                            LastName = "Brown",
-                            LockoutEnabled = false,
-                            MiddleName = "",
-                            NormalizedEmail = "CHARLIE.BROWN@EXAMPLE.COM",
-                            NormalizedUserName = "CHARLIE.BROWN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAt/Q8zwOmH3jrjr41uiq++MalN+ufeglsNoUjJmAc1KKVCY96TOeGeVKHiE97DFhg==",
-                            PhoneNumber = "3456789012",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "082c50db-9f16-4de3-aaed-a6e01db963b4",
-                            TwoFactorEnabled = false,
-                            UserName = "charlie.brown@example.com",
-                            Address = "202 Oak St",
-                            Certifications = "Certified Carpenter",
-                            CurrentRole = "Fixer",
-                            ExperienceYears = 8,
-                            ImgUrl = "",
-                            IsAvailable = true,
-                            IsVerified = true,
-                            Location = "Eleme",
-                            Portfolio = "portfolio3.pdf",
-                            Rate = 45.0m,
-                            RateType = "Per Hour",
-                            Rating = 4.7000000000000002,
-                            Reviews = "Highly skilled",
-                            Specializations = "Carpentry",
-                            VerificationDocument = "doc5.pdf"
+                            Specializations = "Plumbing"
                         });
                 });
 
@@ -1095,7 +977,7 @@ namespace quickprofixer.Migrations
 
             modelBuilder.Entity("QuickProFixer.Models.Fixer", b =>
                 {
-                    b.HasOne("QuickProFixer.Models.ApplicationUser", null)
+                    b.HasOne("QuickProFixer.Models.Client", null)
                         .WithOne()
                         .HasForeignKey("QuickProFixer.Models.Fixer", "Id")
                         .OnDelete(DeleteBehavior.Cascade)

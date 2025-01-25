@@ -12,8 +12,8 @@ using QuickProFixer.Data;
 namespace quickprofixer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250101204022_AddPlatformAnalytics1")]
-    partial class AddPlatformAnalytics1
+    [Migration("20250122135254_UpdateForeignKeyConstraints1")]
+    partial class UpdateForeignKeyConstraints1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,15 +170,6 @@ namespace quickprofixer.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CurrentRole")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -199,6 +190,9 @@ namespace quickprofixer.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -239,9 +233,7 @@ namespace quickprofixer.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("QuickProFixer.Models.Booking", b =>
@@ -610,6 +602,14 @@ namespace quickprofixer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CurrentRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsVerified")
                         .HasColumnType("bit");
 
@@ -621,16 +621,40 @@ namespace quickprofixer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Client");
+                    b.ToTable("Clients", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "client1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7766310e-84d8-447c-b264-6ff3e2ecd4bc",
+                            Email = "john.doe@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            LockoutEnabled = false,
+                            MiddleName = "",
+                            NormalizedEmail = "JOHN.DOE@EXAMPLE.COM",
+                            NormalizedUserName = "JOHN.DOE@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEAznoJ9abLEfjQRi60FeyDKRjtnQARKbteBZ/+TVYwnp7epM0bZtlPPgTUOqteA8Q==",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "a3bf9f76-8eb5-4115-a9c8-f30535bfdbf9",
+                            TwoFactorEnabled = false,
+                            UserName = "john.doe@example.com",
+                            Address = "123 Main St",
+                            CurrentRole = "Client",
+                            ImgUrl = "",
+                            IsVerified = true,
+                            Location = "Cityville",
+                            VerificationDocument = "doc1.pdf"
+                        });
                 });
 
             modelBuilder.Entity("QuickProFixer.Models.Fixer", b =>
                 {
-                    b.HasBaseType("QuickProFixer.Models.ApplicationUser");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasBaseType("QuickProFixer.Models.Client");
 
                     b.Property<string>("Certifications")
                         .HasColumnType("nvarchar(max)");
@@ -640,13 +664,6 @@ namespace quickprofixer.Migrations
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Portfolio")
                         .IsRequired()
@@ -670,26 +687,44 @@ namespace quickprofixer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VerificationDocument")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.ToTable("Fixers", (string)null);
 
-                    b.ToTable("AspNetUsers", t =>
+                    b.HasData(
+                        new
                         {
-                            t.Property("Address")
-                                .HasColumnName("Fixer_Address");
-
-                            t.Property("IsVerified")
-                                .HasColumnName("Fixer_IsVerified");
-
-                            t.Property("Location")
-                                .HasColumnName("Fixer_Location");
-
-                            t.Property("VerificationDocument")
-                                .HasColumnName("Fixer_VerificationDocument");
+                            Id = "fixer1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1a7c4173-291f-4545-aa45-bb161b48121b",
+                            Email = "jane.smith@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "Jane",
+                            LastName = "Smith",
+                            LockoutEnabled = false,
+                            MiddleName = "",
+                            NormalizedEmail = "JANE.SMITH@EXAMPLE.COM",
+                            NormalizedUserName = "JANE.SMITH@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFQ3eCqgPsjA7dMWCfMMsPeokgRDkTO/S5hXkTb2orJ0Rd6q4mRYfyUciPYFYrn/Jw==",
+                            PhoneNumber = "0987654321",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "f1e71479-94e3-4d21-a0ea-cc43bfd2ed1d",
+                            TwoFactorEnabled = false,
+                            UserName = "jane.smith@example.com",
+                            Address = "456 Elm St",
+                            CurrentRole = "Client",
+                            ImgUrl = "",
+                            IsVerified = true,
+                            Location = "Townsville",
+                            VerificationDocument = "doc2.pdf",
+                            Certifications = "Certified Plumber",
+                            ExperienceYears = 10,
+                            IsAvailable = true,
+                            Portfolio = "portfolio.pdf",
+                            Rate = 50.0m,
+                            RateType = "Per Hour",
+                            Rating = 4.5,
+                            Reviews = "Excellent service",
+                            Specializations = "Plumbing"
                         });
-
-                    b.HasDiscriminator().HasValue("Fixer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -748,13 +783,13 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
                         .WithMany()
                         .HasForeignKey("FixerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.Quote", "Quote")
@@ -781,7 +816,7 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
                         .WithMany("ClientRatings")
                         .HasForeignKey("FixerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Client");
@@ -815,7 +850,7 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Client", "Client")
                         .WithMany("FixerRatings")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
@@ -840,13 +875,13 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
                         .WithMany()
                         .HasForeignKey("FixerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -867,13 +902,13 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
                         .WithMany()
                         .HasForeignKey("FixerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -888,7 +923,7 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.FixRequest", "FixRequest")
@@ -900,7 +935,7 @@ namespace quickprofixer.Migrations
                     b.HasOne("QuickProFixer.Models.Fixer", "Fixer")
                         .WithMany()
                         .HasForeignKey("FixerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("QuickProFixer.Models.SupportingFile", "SupportingDocument")
@@ -931,6 +966,24 @@ namespace quickprofixer.Migrations
                         .IsRequired();
 
                     b.Navigation("Quote");
+                });
+
+            modelBuilder.Entity("QuickProFixer.Models.Client", b =>
+                {
+                    b.HasOne("QuickProFixer.Models.ApplicationUser", null)
+                        .WithOne()
+                        .HasForeignKey("QuickProFixer.Models.Client", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuickProFixer.Models.Fixer", b =>
+                {
+                    b.HasOne("QuickProFixer.Models.Client", null)
+                        .WithOne()
+                        .HasForeignKey("QuickProFixer.Models.Fixer", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("QuickProFixer.Models.Quote", b =>
