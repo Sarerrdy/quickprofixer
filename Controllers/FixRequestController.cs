@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using QuickProFixer.DTOs;
 using QuickProFixer.Services;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace QuickProFixer.Controllers
@@ -11,10 +10,12 @@ namespace QuickProFixer.Controllers
 	public class FixRequestController : ControllerBase
 	{
 		private readonly IFixRequestService _fixRequestService;
+		private readonly IAddressService _addressService;
 
-		public FixRequestController(IFixRequestService fixRequestService)
+		public FixRequestController(IFixRequestService fixRequestService, IAddressService addressService)
 		{
 			_fixRequestService = fixRequestService;
+			_addressService = addressService;
 		}
 
 		/// <summary>
@@ -23,6 +24,25 @@ namespace QuickProFixer.Controllers
 		[HttpPost("fix-request")]
 		public async Task<IActionResult> CreateFixRequest([FromBody] FixRequestDto fixRequestDto)
 		{
+			// Check if AddressId is null or zero, indicating a new address
+			if (fixRequestDto.AddressId == 0 && fixRequestDto.Address != null)
+			{
+				// Create a new address
+				var newAddress = new AddressDto
+				{
+					AddressLine = fixRequestDto.Address.AddressLine,
+					Landmark = fixRequestDto.Address.Landmark,
+					Town = fixRequestDto.Address.Town,
+					LGA = fixRequestDto.Address.LGA,
+					State = fixRequestDto.Address.State,
+					ZipCode = fixRequestDto.Address.ZipCode,
+					Country = fixRequestDto.Address.Country
+				};
+
+				var createdAddress = await _addressService.CreateAddressAsync(newAddress);
+				fixRequestDto.AddressId = createdAddress.Id;
+			}
+
 			var createdFixRequest = await _fixRequestService.CreateFixRequestAsync(fixRequestDto);
 			return CreatedAtAction(nameof(GetFixRequestById), new { id = createdFixRequest.Id }, createdFixRequest);
 		}

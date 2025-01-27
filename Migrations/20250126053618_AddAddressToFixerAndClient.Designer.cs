@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickProFixer.Data;
 
@@ -11,9 +12,11 @@ using QuickProFixer.Data;
 namespace quickprofixer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126053618_AddAddressToFixerAndClient")]
+    partial class AddAddressToFixerAndClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,8 +247,8 @@ namespace quickprofixer.Migrations
                             Id = 6,
                             AddressLine = "303 Birch St",
                             Country = "Nigeria",
-                            LGA = "Eleme",
-                            State = "Rivers",
+                            LGA = "Portharcourt",
+                            State = "Portharcourt",
                             Town = "Eleme"
                         },
                         new
@@ -253,8 +256,8 @@ namespace quickprofixer.Migrations
                             Id = 7,
                             AddressLine = "404 Cedar St",
                             Country = "Nigeria",
-                            LGA = "Portharcourt",
-                            State = "Rivers",
+                            LGA = "Eleme",
+                            State = "Eleme",
                             Town = "Portharcourt"
                         });
                 });
@@ -444,8 +447,9 @@ namespace quickprofixer.Migrations
                     b.Property<DateTime>("PreferredSchedule")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SpecializationId")
-                        .HasColumnType("int");
+                    b.Property<string>("RequiredSkills")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -466,8 +470,6 @@ namespace quickprofixer.Migrations
                     b.HasIndex("AddressId");
 
                     b.HasIndex("FixerId");
-
-                    b.HasIndex("SpecializationId");
 
                     b.HasIndex("SupportingDocumentId");
 
@@ -785,7 +787,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "client1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "43e8f993-d5af-4973-ac78-fdaf99515393",
+                            ConcurrencyStamp = "da89457d-074e-4110-85c7-09dd636bb4ba",
                             Email = "john.doe@example.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -794,13 +796,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "JOHN.DOE@EXAMPLE.COM",
                             NormalizedUserName = "JOHN.DOE@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELtUMrm/K8YlNluRwSt66AIhJftkmOjJXi+tp7AG34SlJTIYsgHnliSYHoGW+R52uQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKojkkZjWlH/ue9BKBiAz16p1f+qYNt+guRfOjrkgM5pamm4L3ilNNDIthT2TotxGg==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e774814e-da4c-408f-95a4-ba282823056a",
+                            SecurityStamp = "aa6e1674-3721-4247-854e-9dd02136f000",
                             TwoFactorEnabled = false,
                             UserName = "john.doe@example.com",
-                            AddressId = 6,
+                            AddressId = 1,
                             CurrentRole = "Client",
                             ImgUrl = "",
                             IsVerified = true,
@@ -811,7 +813,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "client2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d1d81abc-40e3-4569-9ccd-db09670e3509",
+                            ConcurrencyStamp = "b5f9895e-be91-485b-b587-bd5c85490654",
                             Email = "jane.doe@example.com",
                             EmailConfirmed = true,
                             FirstName = "Jane",
@@ -820,13 +822,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "JANE.DOE@EXAMPLE.COM",
                             NormalizedUserName = "JANE.DOE@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM9O6u0bLzEz2coDyx7F0XY98mRROMNGEuSAU9LMAEL+JZjKF4SRnCQ+7+hToKXaZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJvTthhIow1kNvJ6CH3Ry9KzLYJeTrDRRf2Pi6n0Qjh3ozjxRqA+kRVzq4IfztdULQ==",
                             PhoneNumber = "0987654321",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "9d67607a-43ef-42f7-a478-c298a3d49cc3",
+                            SecurityStamp = "ea2728ad-0209-45f3-91f3-c8cac230bf97",
                             TwoFactorEnabled = false,
                             UserName = "jane.doe@example.com",
-                            AddressId = 7,
+                            AddressId = 2,
                             CurrentRole = "Client",
                             ImgUrl = "",
                             IsVerified = true,
@@ -902,7 +904,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6b521f7d-4c94-4693-b3b3-2394e84d714d",
+                            ConcurrencyStamp = "fe63333b-d27b-4ada-ba27-74276a2d9832",
                             Email = "alice.smith@example.com",
                             EmailConfirmed = true,
                             FirstName = "Alice",
@@ -911,13 +913,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "ALICE.SMITH@EXAMPLE.COM",
                             NormalizedUserName = "ALICE.SMITH@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE5MIzhG9ooQJvsN8kdwRP+zeQL2kVJNvaFaq7zIhj2qT+gPevUfj+07C/1HQkrW9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBydoo1JpyTANMuGEFXnPUIi6D/dfbjL90BaEoEv7ugMwoYAhtpL39yO1NUNVzalGw==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "61fe4a75-cd7f-4fa5-94d6-5e6de8a95976",
+                            SecurityStamp = "2f27a819-1680-4b4d-810e-74cc7f94a5fa",
                             TwoFactorEnabled = false,
                             UserName = "alice.smith@example.com",
-                            AddressId = 1,
+                            AddressId = 3,
                             Certifications = "Certified Electrician",
                             CurrentRole = "Fixer",
                             ExperienceYears = 5,
@@ -937,7 +939,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad60a361-e8f4-4faf-9198-d7944952dfb4",
+                            ConcurrencyStamp = "f3c9a618-9f04-4e0c-8f64-73722012daf3",
                             Email = "bob.johnson@example.com",
                             EmailConfirmed = true,
                             FirstName = "Bob",
@@ -946,13 +948,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "BOB.JOHNSON@EXAMPLE.COM",
                             NormalizedUserName = "BOB.JOHNSON@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDtUBXU/DxqXmrrZc9sXt3hKNY2q04KUjRU44+UYqfXZxqx6En52GYoJkYPHiHPtcg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG0/P/6Pe13LkiFNWdC8yixvHkWLwlMzFIPabL6miBdVNNw67/o94MXISEm0c8aZbg==",
                             PhoneNumber = "2345678901",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "85c1b416-4e38-4cba-a27a-3dc34704b836",
+                            SecurityStamp = "883f303d-2dd7-4972-97d8-4a3b49805956",
                             TwoFactorEnabled = false,
                             UserName = "bob.johnson@example.com",
-                            AddressId = 2,
+                            AddressId = 4,
                             Certifications = "Certified Plumber",
                             CurrentRole = "Fixer",
                             ExperienceYears = 10,
@@ -972,7 +974,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "534d2fc9-43f1-47f3-b952-c697f3a493e9",
+                            ConcurrencyStamp = "cbc140c0-b3a2-4b70-a18c-b3d24e24c132",
                             Email = "charlie.brown@example.com",
                             EmailConfirmed = true,
                             FirstName = "Charlie",
@@ -981,13 +983,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "CHARLIE.BROWN@EXAMPLE.COM",
                             NormalizedUserName = "CHARLIE.BROWN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEASXq2eIXl9l/83bcyoL10n6KebUlKRhq7tTn18PhxQQHAsCO7kX+18xL7czLv4lPw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJkVjGyr3zIqPWW1O0S6xcGdZKUcseimZAFGG+POIgmMHqOL2UpnZw5cxlFgKwsXaQ==",
                             PhoneNumber = "3456789012",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3acbcb23-e513-4ef4-83c7-0766981a3cc6",
+                            SecurityStamp = "83bd12a1-9283-4dfc-ae97-6f5ec6ef2b5f",
                             TwoFactorEnabled = false,
                             UserName = "charlie.brown@example.com",
-                            AddressId = 3,
+                            AddressId = 5,
                             Certifications = "Certified Mason",
                             CurrentRole = "Fixer",
                             ExperienceYears = 8,
@@ -1007,7 +1009,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2690d3be-e932-4851-9aab-6edea2643384",
+                            ConcurrencyStamp = "8d6bf09e-1d84-4f2e-b01f-45be11e0eb39",
                             Email = "david.williams@example.com",
                             EmailConfirmed = true,
                             FirstName = "David",
@@ -1016,13 +1018,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "DAVID.WILLIAMS@EXAMPLE.COM",
                             NormalizedUserName = "DAVID.WILLIAMS@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENTn562L+T11hlcqyq6XhAkZynw6uc5jgO4Ep7PaWnjta34Xpw/bK3uYoiEZC6JoCA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPaOQx6jYwq48dmM6yoD2b0KxvvLhyx+IdkCqdwGRo6iXLjfNygaJyh4Nc7DswdxdQ==",
                             PhoneNumber = "4567890123",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "971cb4e4-ad66-445f-a85a-f3a2e9796fae",
+                            SecurityStamp = "e578df13-a392-4918-b7eb-07a7cc4a148e",
                             TwoFactorEnabled = false,
                             UserName = "david.williams@example.com",
-                            AddressId = 4,
+                            AddressId = 6,
                             Certifications = "Certified Tiler",
                             CurrentRole = "Fixer",
                             ExperienceYears = 6,
@@ -1042,7 +1044,7 @@ namespace quickprofixer.Migrations
                         {
                             Id = "fixer5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b0f66d4d-8229-4515-a77b-d90761ee8171",
+                            ConcurrencyStamp = "bb51cff6-56af-4e37-9034-935e0d5638a6",
                             Email = "eve.davis@example.com",
                             EmailConfirmed = true,
                             FirstName = "Eve",
@@ -1051,13 +1053,13 @@ namespace quickprofixer.Migrations
                             MiddleName = "",
                             NormalizedEmail = "EVE.DAVIS@EXAMPLE.COM",
                             NormalizedUserName = "EVE.DAVIS@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGFEpELHbGXBwcb5uopo7epvtrGqTjOLpTVG6JTQaj04BBuBP4JL3d6xSFmVo0V4vw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOYz6lWDQwmQtxeIVrQDkuzK8dmZeUcDHo41WITHvZkLbmo91vD3XJtX+Qq0PJH/eg==",
                             PhoneNumber = "5678901234",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a9e7bd29-d0c2-4391-b738-bc0079b1e9b6",
+                            SecurityStamp = "b70b782b-0913-444e-a486-2b3afa87dda7",
                             TwoFactorEnabled = false,
                             UserName = "eve.davis@example.com",
-                            AddressId = 5,
+                            AddressId = 7,
                             Certifications = "Certified Screeder",
                             CurrentRole = "Fixer",
                             ExperienceYears = 7,
@@ -1184,12 +1186,6 @@ namespace quickprofixer.Migrations
                         .WithMany()
                         .HasForeignKey("FixerId");
 
-                    b.HasOne("QuickProFixer.Models.Service", "Specialization")
-                        .WithMany()
-                        .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("QuickProFixer.Models.SupportingFile", "SupportingDocument")
                         .WithMany()
                         .HasForeignKey("SupportingDocumentId");
@@ -1201,8 +1197,6 @@ namespace quickprofixer.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Fixer");
-
-                    b.Navigation("Specialization");
 
                     b.Navigation("SupportingDocument");
 

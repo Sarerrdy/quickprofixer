@@ -38,14 +38,14 @@ namespace QuickProFixer.Services
 				MiddleName = fixerDto.MiddleName,
 				PhoneNumber = fixerDto.PhoneNumber,
 				ImgUrl = fixerDto.ImgUrl ?? string.Empty,
-				Specializations = fixerDto.Specializations,
+				SpecializationId = fixerDto.SpecializationId, // Updated
 				Certifications = fixerDto.Certifications,
 				VerificationDocument = fixerDto.VerificationDocument,
 				IsVerified = false,
 				Rating = fixerDto.Rating,
 				Location = fixerDto.Location,
 				IsAvailable = fixerDto.IsAvailable,
-				Address = fixerDto.Address,
+				AddressId = fixerDto.AddressId, // Updated
 				Reviews = fixerDto.Reviews,
 				ExperienceYears = fixerDto.ExperienceYears,
 				Portfolio = fixerDto.Portfolio,
@@ -73,7 +73,7 @@ namespace QuickProFixer.Services
 				LastName = clientDto.LastName,
 				MiddleName = clientDto.MiddleName,
 				PhoneNumber = clientDto.PhoneNumber,
-				Address = clientDto.Address,
+				AddressId = clientDto.AddressId, // Updated
 				Location = clientDto.Location,
 				ImgUrl = clientDto.ImgUrl ?? string.Empty,
 				VerificationDocument = clientDto.VerificationDocument,

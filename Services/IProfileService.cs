@@ -7,10 +7,10 @@ namespace QuickProFixer.Services
 	{
 		Task<FixerDto> CreateFixerProfileAsync(FixerDto fixerDto);
 		Task<FixerDto?> UpdateFixerProfileAsync(FixerDto fixerDto);
-		Task<FixerDto?> GetFixerProfileAsync(int id);
+		Task<FixerDto?> GetFixerProfileAsync(string id);
 
 		Task<ClientDto> CreateClientProfileAsync(ClientDto clientDto);
 		Task<ClientDto?> UpdateClientProfileAsync(ClientDto clientDto);
-		Task<ClientDto?> GetClientProfileAsync(int id);
+		Task<ClientDto?> GetClientProfileAsync(string id);
 	}
 }

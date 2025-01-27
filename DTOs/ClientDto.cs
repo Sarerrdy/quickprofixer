@@ -36,9 +36,10 @@ namespace QuickProFixer.DTOs
 
 		public string? ImgUrl { get; set; }
 		/// <summary>
-		/// Gets or sets the address of the Client.
+		/// Gets or sets the address ID of the Fixer.
 		/// </summary>
-		public string Address { get; set; } = string.Empty;
+		public int AddressId { get; set; }
+		public AddressDto Address { get; set; } = null!; // Navigation property
 
 		public required string Location { get; set; }
 

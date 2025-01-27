@@ -11,9 +11,11 @@ namespace QuickProFixer.Models
 		public string ImgUrl { get; set; } = string.Empty;
 
 		/// <summary>
-		/// Gets or sets the address of the client.
+		/// Gets or sets the address ID of the fixer.
 		/// </summary>
-		public string Address { get; set; } = string.Empty;
+		public int AddressId { get; set; }
+		public Address Address { get; set; } = null!; // Navigation property
+
 
 		/// <summary>
 		/// Gets or sets the location of the fixer.
@@ -31,10 +33,12 @@ namespace QuickProFixer.Models
 		public bool IsVerified { get; set; } = false;
 
 		public string CurrentRole { get; set; } = "Fixer";
+
 		/// <summary>
 		/// Gets or sets the skill category of the fixer.
 		/// </summary>
-		public required string Specializations { get; set; }
+		public int SpecializationId { get; set; }
+		public Service Specialization { get; set; } = null!; // Navigation property
 
 		/// <summary>
 		/// Gets or sets the certifications of the fixer.
@@ -79,5 +83,6 @@ namespace QuickProFixer.Models
 		/// </summary>
 		public decimal Rate { get; set; }
 		public ICollection<ClientRating> ClientRatings { get; set; } = new List<ClientRating>(); // Navigation property
+
 	}
 }

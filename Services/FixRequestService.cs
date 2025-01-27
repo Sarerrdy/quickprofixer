@@ -22,12 +22,13 @@ namespace QuickProFixer.Services
 			var fixRequest = new FixRequest
 			{
 				JobDescription = fixRequestDto.JobDescription,
-				RequiredSkills = fixRequestDto.RequiredSkills,
 				Location = fixRequestDto.Location,
 				PreferredSchedule = fixRequestDto.PreferredSchedule,
 				FixerIds = fixRequestDto.FixerIds,
 				ClientId = fixRequestDto.ClientId,
 				Status = "Pending",
+				AddressId = fixRequestDto.AddressId, // Updated
+				SpecializationId = fixRequestDto.SpecializationId, // Updated
 				SupportingImage = fixRequestDto.SupportingImage != null ? new SupportingFile
 				{
 					FileName = fixRequestDto.SupportingImage.FileName,
@@ -58,12 +59,29 @@ namespace QuickProFixer.Services
 				{
 					Id = fr.Id,
 					JobDescription = fr.JobDescription,
-					RequiredSkills = fr.RequiredSkills,
 					Location = fr.Location,
 					PreferredSchedule = fr.PreferredSchedule,
 					FixerIds = fr.FixerIds,
 					ClientId = fr.ClientId,
 					Status = fr.Status,
+					AddressId = fr.AddressId,
+					Address = new AddressDto
+					{
+						Id = fr.Address.Id,
+						AddressLine = fr.Address.AddressLine,
+						Landmark = fr.Address.Landmark,
+						Town = fr.Address.Town,
+						LGA = fr.Address.LGA,
+						State = fr.Address.State,
+						ZipCode = fr.Address.ZipCode,
+						Country = fr.Address.Country
+					},
+					SpecializationId = fr.SpecializationId, // Updated
+					Specialization = new ServiceDto
+					{
+						Id = fr.Specialization.Id,
+						Name = fr.Specialization.Name
+					},
 					SupportingImage = fr.SupportingImage != null ? new SupportingFileDto
 					{
 						Id = fr.SupportingImage.Id,
@@ -88,6 +106,8 @@ namespace QuickProFixer.Services
 			var fixRequest = await _context.FixRequests
 				.Include(fr => fr.SupportingImage)
 				.Include(fr => fr.SupportingDocument)
+				.Include(fr => fr.Address) // Include Address
+				.Include(fr => fr.Specialization) // Include Specialization
 				.FirstOrDefaultAsync(fr => fr.Id == id);
 
 			if (fixRequest == null)
@@ -99,12 +119,29 @@ namespace QuickProFixer.Services
 			{
 				Id = fixRequest.Id,
 				JobDescription = fixRequest.JobDescription,
-				RequiredSkills = fixRequest.RequiredSkills,
 				Location = fixRequest.Location,
 				PreferredSchedule = fixRequest.PreferredSchedule,
 				FixerIds = fixRequest.FixerIds,
 				ClientId = fixRequest.ClientId,
 				Status = fixRequest.Status,
+				AddressId = fixRequest.AddressId,
+				Address = new AddressDto
+				{
+					Id = fixRequest.Address.Id,
+					AddressLine = fixRequest.Address.AddressLine,
+					Landmark = fixRequest.Address.Landmark,
+					Town = fixRequest.Address.Town,
+					LGA = fixRequest.Address.LGA,
+					State = fixRequest.Address.State,
+					ZipCode = fixRequest.Address.ZipCode,
+					Country = fixRequest.Address.Country
+				},
+				SpecializationId = fixRequest.SpecializationId, // Updated
+				Specialization = new ServiceDto
+				{
+					Id = fixRequest.Specialization.Id,
+					Name = fixRequest.Specialization.Name
+				},
 				SupportingImage = fixRequest.SupportingImage != null ? new SupportingFileDto
 				{
 					Id = fixRequest.SupportingImage.Id,

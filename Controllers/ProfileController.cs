@@ -71,7 +71,7 @@ namespace QuickProFixer.Controllers
 		/// <param name="id">The ID of the fixer.</param>
 		/// <returns>An IActionResult containing the fixer profile details.</returns>
 		[HttpGet("fixer/{id}")]
-		public async Task<IActionResult> GetFixerProfile(int id)
+		public async Task<IActionResult> GetFixerProfile(string id)
 		{
 			var result = await _profileService.GetFixerProfileAsync(id);
 			if (result == null)
@@ -122,7 +122,7 @@ namespace QuickProFixer.Controllers
 		/// <param name="id">The ID of the client.</param>
 		/// <returns>An IActionResult containing the client profile details.</returns>
 		[HttpGet("client/{id}")]
-		public async Task<IActionResult> GetClientProfile(int id)
+		public async Task<IActionResult> GetClientProfile(string id)
 		{
 			var result = await _profileService.GetClientProfileAsync(id);
 			if (result == null)

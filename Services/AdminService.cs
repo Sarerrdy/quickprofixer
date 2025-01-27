@@ -28,7 +28,17 @@ namespace QuickProFixer.Services
                     LastName = f.LastName,
                     Email = f.Email ?? string.Empty,
                     PhoneNumber = f.PhoneNumber ?? string.Empty,
-                    Address = f.Address,
+                    Address = new AddressDto
+                    {
+                        Id = f.Address.Id,
+                        AddressLine = f.Address.AddressLine,
+                        Landmark = f.Address.Landmark,
+                        Town = f.Address.Town,
+                        LGA = f.Address.LGA,
+                        State = f.Address.State,
+                        ZipCode = f.Address.ZipCode,
+                        Country = f.Address.Country
+                    },
                     IsFixer = true
                 })
                 .ToListAsync();
@@ -42,7 +52,17 @@ namespace QuickProFixer.Services
                     LastName = c.LastName,
                     Email = c.Email ?? string.Empty,
                     PhoneNumber = c.PhoneNumber ?? string.Empty,
-                    Address = c.Address,
+                    Address = new AddressDto
+                    {
+                        Id = c.Address.Id,
+                        AddressLine = c.Address.AddressLine,
+                        Landmark = c.Address.Landmark,
+                        Town = c.Address.Town,
+                        LGA = c.Address.LGA,
+                        State = c.Address.State,
+                        ZipCode = c.Address.ZipCode,
+                        Country = c.Address.Country
+                    },
                     IsFixer = false
                 })
                 .ToListAsync();

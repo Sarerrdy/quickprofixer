@@ -11,9 +11,10 @@ namespace QuickProFixer.Models
 		public string ImgUrl { get; set; } = string.Empty;
 
 		/// <summary>
-		/// Gets or sets the address of the client.
+		/// Gets or sets the address ID of the fixer.
 		/// </summary>
-		public string Address { get; set; } = string.Empty;
+		public int AddressId { get; set; }
+		public Address Address { get; set; } = null!; // Navigation property
 
 		/// <summary>
 		/// Gets or sets the location of the fixer.

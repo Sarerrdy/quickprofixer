@@ -6,12 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using QuickProFixer.Data;
 using QuickProFixer.Hubs;
 using QuickProFixer.Models;
 using QuickProFixer.Services;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace QuickProFixer
@@ -81,7 +83,6 @@ namespace QuickProFixer
 			// Register HttpClient
 			services.AddHttpClient();
 
-
 			// Add services to the container.
 			services.AddControllers();
 
@@ -98,13 +99,18 @@ namespace QuickProFixer
 			services.AddScoped<IRatingService, RatingService>();
 			services.AddScoped<IDashboardService, DashboardService>();
 			services.AddScoped<IPaymentService, PaymentService>();
+			services.AddScoped<IServiceService, ServiceService>();
+			services.AddScoped<IAddressService, AddressService>();
 
 			// Add logging
-
-			services.AddLogging();
+			services.AddLogging(loggingBuilder =>
+			{
+				loggingBuilder.AddConsole();
+				loggingBuilder.AddDebug();
+			});
 		}
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
 		{
 			if (env.IsDevelopment())
 			{
@@ -120,11 +126,28 @@ namespace QuickProFixer
 			app.UseAuthentication();
 			app.UseAuthorization();
 
+			// Log incoming requests
+			app.Use(async (context, next) =>
+			{
+				logger.LogInformation($"Incoming request: {context.Request.Method} {context.Request.Path}");
+				await next.Invoke();
+				logger.LogInformation($"Outgoing response: {context.Response.StatusCode}");
+			});
+
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
 				endpoints.MapHub<NotificationHub>("/notificationHub");
+
+				// Log the registered endpoints
+				foreach (var endpoint in endpoints.DataSources.SelectMany(ds => ds.Endpoints))
+				{
+					logger.LogInformation($"Registered endpoint: {endpoint.DisplayName}");
+				}
 			});
+
+			// Log that the application has started
+			logger.LogInformation("Application has started and is listening for requests.");
 		}
 	}
 }

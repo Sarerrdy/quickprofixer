@@ -33,8 +33,8 @@ namespace QuickProFixer.Services
 				ImgUrl = fixerDto.ImgUrl ?? string.Empty,
 				RateType = fixerDto.RateType,
 				Rate = fixerDto.Rate,
-				Address = fixerDto.Address,
-				Specializations = fixerDto.Specializations,
+				AddressId = fixerDto.AddressId, // Updated
+				SpecializationId = fixerDto.SpecializationId, // Updated
 				Certifications = fixerDto.Certifications,
 				VerificationDocument = fixerDto.VerificationDocument,
 				IsVerified = false
@@ -43,7 +43,8 @@ namespace QuickProFixer.Services
 			_context.Fixers.Add(fixer);
 			await _context.SaveChangesAsync();
 
-			fixerDto.Id = fixer.Id; // Ensure the returned DTO contains the ID
+			fixerDto.Id = fixer.Id;
+			fixerDto.SpecializationName = (await _context.Services.FindAsync(fixer.SpecializationId))?.Name ?? string.Empty; // Added
 
 			return fixerDto;
 		}
@@ -61,7 +62,7 @@ namespace QuickProFixer.Services
 			fixer.MiddleName = fixerDto.MiddleName;
 			fixer.Email = fixerDto.Email;
 			fixer.PhoneNumber = fixerDto.PhoneNumber;
-			fixer.Address = fixerDto.Address;
+			fixer.AddressId = fixerDto.AddressId; // Updated
 			fixer.ImgUrl = fixerDto.ImgUrl ?? string.Empty;
 			fixer.Location = fixerDto.Location;
 			fixer.Rating = fixerDto.Rating;
@@ -69,7 +70,7 @@ namespace QuickProFixer.Services
 			fixer.Reviews = fixerDto.Reviews;
 			fixer.ExperienceYears = fixerDto.ExperienceYears;
 			fixer.Portfolio = fixerDto.Portfolio;
-			fixer.Specializations = fixerDto.Specializations;
+			fixer.SpecializationId = fixerDto.SpecializationId; // Updated
 			fixer.Certifications = fixerDto.Certifications;
 			fixer.VerificationDocument = fixerDto.VerificationDocument;
 			fixer.IsVerified = fixerDto.IsVerified;
@@ -77,12 +78,17 @@ namespace QuickProFixer.Services
 			_context.Fixers.Update(fixer);
 			await _context.SaveChangesAsync();
 
+			fixerDto.SpecializationName = (await _context.Services.FindAsync(fixer.SpecializationId))?.Name ?? string.Empty; // Added
+
 			return fixerDto;
 		}
 
-		public async Task<FixerDto?> GetFixerProfileAsync(int id)
+		public async Task<FixerDto?> GetFixerProfileAsync(string id)
 		{
-			var fixer = await _context.Fixers.FindAsync(id);
+			var fixer = await _context.Fixers
+				.Include(f => f.Specialization)
+				.Include(f => f.Address)
+				.FirstOrDefaultAsync(f => f.Id == id);
 			if (fixer == null)
 			{
 				return null;
@@ -96,13 +102,25 @@ namespace QuickProFixer.Services
 				MiddleName = fixer.MiddleName ?? string.Empty,
 				PhoneNumber = fixer.PhoneNumber ?? string.Empty,
 				Email = fixer.Email ?? string.Empty,
-				Specializations = fixer.Specializations,
+				SpecializationId = fixer.SpecializationId, // Updated
+				SpecializationName = fixer.Specialization.Name, // Added
 				Certifications = fixer.Certifications,
 				Rating = fixer.Rating,
 				Location = fixer.Location,
 				IsAvailable = fixer.IsAvailable,
 				ImgUrl = fixer.ImgUrl,
-				Address = fixer.Address,
+				AddressId = fixer.AddressId, // Updated
+				Address = new AddressDto
+				{
+					Id = fixer.Address.Id,
+					AddressLine = fixer.Address.AddressLine,
+					Landmark = fixer.Address.Landmark,
+					Town = fixer.Address.Town,
+					LGA = fixer.Address.LGA,
+					State = fixer.Address.State,
+					ZipCode = fixer.Address.ZipCode,
+					Country = fixer.Address.Country
+				},
 				VerificationDocument = fixer.VerificationDocument,
 				IsVerified = fixer.IsVerified,
 				Reviews = fixer.Reviews,
@@ -124,7 +142,7 @@ namespace QuickProFixer.Services
 				Email = clientDto.Email,
 				PhoneNumber = clientDto.PhoneNumber,
 				Location = clientDto.Location,
-				Address = clientDto.Address,
+				AddressId = clientDto.AddressId, // Updated
 				VerificationDocument = clientDto.VerificationDocument,
 				IsVerified = false
 			};
@@ -152,7 +170,7 @@ namespace QuickProFixer.Services
 			client.Location = clientDto.Location;
 			client.Email = clientDto.Email;
 			client.PhoneNumber = clientDto.PhoneNumber;
-			client.Address = clientDto.Address;
+			client.AddressId = clientDto.AddressId; // Updated
 			client.VerificationDocument = clientDto.VerificationDocument;
 			client.IsVerified = clientDto.IsVerified;
 
@@ -162,9 +180,11 @@ namespace QuickProFixer.Services
 			return clientDto;
 		}
 
-		public async Task<ClientDto?> GetClientProfileAsync(int id)
+		public async Task<ClientDto?> GetClientProfileAsync(string id)
 		{
-			var client = await _context.Clients.FindAsync(id);
+			var client = await _context.Clients
+				.Include(c => c.Address)
+				.FirstOrDefaultAsync(c => c.Id == id);
 			if (client == null)
 			{
 				return null;
@@ -180,7 +200,18 @@ namespace QuickProFixer.Services
 				Email = client.Email ?? string.Empty,
 				PhoneNumber = client.PhoneNumber ?? string.Empty,
 				Location = client.Location,
-				Address = client.Address,
+				AddressId = client.AddressId, // Updated
+				Address = new AddressDto
+				{
+					Id = client.Address.Id,
+					AddressLine = client.Address.AddressLine,
+					Landmark = client.Address.Landmark,
+					Town = client.Address.Town,
+					LGA = client.Address.LGA,
+					State = client.Address.State,
+					ZipCode = client.Address.ZipCode,
+					Country = client.Address.Country
+				},
 				VerificationDocument = client.VerificationDocument,
 				IsVerified = client.IsVerified
 			};

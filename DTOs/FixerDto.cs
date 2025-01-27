@@ -9,6 +9,7 @@ namespace QuickProFixer.DTOs
 		/// Gets or sets the ID of the Fixer. 
 		/// /// </summary> 
 		public string Id { get; set; } = string.Empty;
+
 		/// <summary>
 		/// Gets or sets the first name of the Fixer.
 		/// </summary>
@@ -22,7 +23,6 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the last name of the Fixer.
 		/// </summary>
-		/// 
 		public required string LastName { get; set; }
 
 		/// <summary>
@@ -36,16 +36,19 @@ namespace QuickProFixer.DTOs
 		public required string PhoneNumber { get; set; }
 
 		/// <summary>
-		/// Gets or sets the address of the Fixer.
+		/// Gets or sets the address ID of the Fixer.
 		/// </summary>
-		public string Address { get; set; } = string.Empty;
+		public int AddressId { get; set; }
+		public AddressDto Address { get; set; } = null!; // Navigation property
+
 
 		public string? ImgUrl { get; set; }
 
 		/// <summary>
 		/// Gets or sets the skill category of the Fixer.
 		/// </summary>
-		public required string Specializations { get; set; }
+		public int SpecializationId { get; set; }
+		public string SpecializationName { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the certifications of the Fixer.
@@ -56,6 +59,7 @@ namespace QuickProFixer.DTOs
 		/// Gets or sets the verification document of the Fixer.
 		/// </summary>
 		public string VerificationDocument { get; set; } = string.Empty;
+
 		/// <summary>
 		/// Gets or sets a value indicating whether the Fixer is verified.
 		/// </summary>
