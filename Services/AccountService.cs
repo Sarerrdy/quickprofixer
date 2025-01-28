@@ -2,8 +2,11 @@ using QuickProFixer.DTOs;
 using QuickProFixer.Models;
 using QuickProFixer.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace QuickProFixer.Services
 {
@@ -26,7 +29,31 @@ namespace QuickProFixer.Services
 			_userManager = userManager;
 		}
 
+
+
 		/// <inheritdoc />
+
+		public async Task<ApplicationUser> RegisterUserAsync(RegisterUserDto registerUserDto, string password)
+		{
+			var user = new ApplicationUser
+			{
+				UserName = registerUserDto.Email,
+				Email = registerUserDto.Email,
+				PhoneNumber = registerUserDto.PhoneNumber,
+				FirstName = registerUserDto.FirstName,
+				LastName = registerUserDto.LastName,
+				MiddleName = registerUserDto.MiddleName
+			};
+
+			var result = await _userManager.CreateAsync(user, password);
+			if (result.Succeeded)
+			{
+				return user;
+			}
+
+			throw new Exception("Failed to register user.");
+		}
+
 		public async Task<Fixer> RegisterFixerAsync(FixerDto fixerDto, string password)
 		{
 			var fixer = new Fixer

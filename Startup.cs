@@ -8,10 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using quickprofixer.Services;
 using QuickProFixer.Data;
 using QuickProFixer.Hubs;
 using QuickProFixer.Models;
 using QuickProFixer.Services;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Linq;
 using System.Text;
@@ -29,17 +31,16 @@ namespace QuickProFixer
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Configure database context
 			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."),
-				sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
+				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			// Configure Identity
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
 
-			// Configure JWT Authentication
+			services.AddScoped<IAccountService, AccountService>();
+			services.AddScoped<IAuthService, AuthService>();
+
 			services.AddAuthentication(options =>
 			{
 				options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -48,9 +49,9 @@ namespace QuickProFixer
 			.AddJwtBearer(options =>
 			{
 				var key = Configuration["Jwt:Key"];
-				if (string.IsNullOrEmpty(key))
+				if (string.IsNullOrEmpty(key) || key.Length < 16)
 				{
-					throw new InvalidOperationException("Jwt:Key is not configured.");
+					throw new InvalidOperationException("Jwt:Key is not configured or is too short.");
 				}
 
 				options.TokenValidationParameters = new TokenValidationParameters
@@ -60,15 +61,15 @@ namespace QuickProFixer
 					ValidateLifetime = true,
 					ValidateIssuerSigningKey = true,
 					ValidIssuer = Configuration["Jwt:Issuer"],
-					ValidAudience = Configuration["Jwt:Audience"],
+					ValidAudience = Configuration["Jwt:Issuer"],
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
 				};
-			})
-			.AddGoogle(options =>
-			{
-				options.ClientId = Configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("Google ClientId is not configured.");
-				options.ClientSecret = Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret is not configured.");
 			});
+			// .AddGoogle(options =>
+			// {
+			// 	options.ClientId = Configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("Google ClientId is not configured.");
+			// 	options.ClientSecret = Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret is not configured.");
+			// });
 
 			// Add CORS services
 			services.AddCors(options =>
@@ -90,7 +91,7 @@ namespace QuickProFixer
 			services.AddScoped<IAccountService, AccountService>();
 			services.AddScoped<IProfileService, ProfileService>();
 			services.AddScoped<IAdminService, AdminService>();
-			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IFixerService, FixerService>();
 			services.AddScoped<IFixRequestService, FixRequestService>();
 			services.AddSignalR();
@@ -101,6 +102,12 @@ namespace QuickProFixer
 			services.AddScoped<IPaymentService, PaymentService>();
 			services.AddScoped<IServiceService, ServiceService>();
 			services.AddScoped<IAddressService, AddressService>();
+
+			// Add Swagger services
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "QuickProFixer API", Version = "v1" });
+			});
 
 			// Add logging
 			services.AddLogging(loggingBuilder =>
@@ -115,8 +122,11 @@ namespace QuickProFixer
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseSwagger();
+				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuickProFixer v1"));
 			}
 
+			app.UseHttpsRedirection();
 			app.UseRouting();
 
 			// Enable CORS

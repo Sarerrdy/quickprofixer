@@ -24,11 +24,6 @@ namespace QuickProFixer.Controllers
 		[HttpPost("fixer")]
 		public async Task<IActionResult> CreateFixerProfile([FromBody] FixerDto fixerDto)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-
 			if (fixerDto == null)
 			{
 				return BadRequest("Invalid fixer profile data.");
@@ -46,11 +41,6 @@ namespace QuickProFixer.Controllers
 		[HttpPut("fixer")]
 		public async Task<IActionResult> UpdateFixerProfile([FromBody] FixerDto fixerDto)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-
 			if (fixerDto == null)
 			{
 				return BadRequest("Invalid fixer profile data.");
@@ -90,9 +80,9 @@ namespace QuickProFixer.Controllers
 		[HttpPost("client")]
 		public async Task<IActionResult> CreateClientProfile([FromBody] ClientDto clientDto)
 		{
-			if (!ModelState.IsValid)
+			if (clientDto == null)
 			{
-				return BadRequest(ModelState);
+				return BadRequest("Invalid client profile data.");
 			}
 
 			var result = await _profileService.CreateClientProfileAsync(clientDto);
@@ -107,9 +97,9 @@ namespace QuickProFixer.Controllers
 		[HttpPut("client")]
 		public async Task<IActionResult> UpdateClientProfile([FromBody] ClientDto clientDto)
 		{
-			if (!ModelState.IsValid)
+			if (clientDto == null)
 			{
-				return BadRequest(ModelState);
+				return BadRequest("Invalid client profile data.");
 			}
 
 			var result = await _profileService.UpdateClientProfileAsync(clientDto);

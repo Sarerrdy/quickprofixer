@@ -9,6 +9,7 @@ namespace QuickProFixer.Services
     /// </summary>
     public interface IAccountService
     {
+        Task<ApplicationUser> RegisterUserAsync(RegisterUserDto registerUserDto, string password);
         /// <summary>
         /// Registers a new Fixer.
         /// </summary>

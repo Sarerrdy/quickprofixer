@@ -13,7 +13,7 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the first name of the Fixer.
 		/// </summary>
-		public required string FirstName { get; set; }
+		public string FirstName { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the middle name of the Client.
@@ -23,17 +23,17 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the last name of the Fixer.
 		/// </summary>
-		public required string LastName { get; set; }
+		public string LastName { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the email of the Fixer.
 		/// </summary>
-		public required string Email { get; set; }
+		public string Email { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the phone number of the Fixer.
 		/// </summary>
-		public required string PhoneNumber { get; set; }
+		public string PhoneNumber { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the address ID of the Fixer.
@@ -73,7 +73,7 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the location of the Fixer.
 		/// </summary>
-		public required string Location { get; set; }
+		public string Location { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets a value indicating whether the Fixer is available.
@@ -98,7 +98,7 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the rate type of the Fixer (e.g., per hour, per day, per square meter).
 		/// </summary>
-		public required string RateType { get; set; }
+		public string RateType { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the rate of the Fixer (cost per hour, sqm, etc.).

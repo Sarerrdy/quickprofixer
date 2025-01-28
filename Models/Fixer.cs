@@ -76,7 +76,7 @@ namespace QuickProFixer.Models
 		/// <summary>
 		/// Gets or sets the rate type of the fixer (e.g., per hour, per day, per square meter).
 		/// </summary>
-		public required string RateType { get; set; }
+		public string RateType { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the rate of the fixer (cost per hour, sqm, etc.).

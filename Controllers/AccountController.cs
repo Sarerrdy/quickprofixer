@@ -16,6 +16,26 @@ namespace QuickProFixer.Controllers
 			_accountService = accountService;
 		}
 
+		[HttpPost("register")]
+		public async Task<IActionResult> Register([FromBody] RegisterUserDto registerUserDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				var user = await _accountService.RegisterUserAsync(registerUserDto, registerUserDto.Password);
+				return Ok("User registered successfully");
+			}
+			catch (Exception ex)
+			{
+				ModelState.AddModelError(string.Empty, ex.Message);
+				return BadRequest(ModelState);
+			}
+		}
+
 		/// <summary>
 		/// Registers a new Fixer.
 		/// </summary>

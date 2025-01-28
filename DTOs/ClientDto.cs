@@ -12,7 +12,7 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the first name of the Client.
 		/// </summary>
-		public required string FirstName { get; set; }
+		public string FirstName { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the middle name of the Client.
@@ -22,17 +22,17 @@ namespace QuickProFixer.DTOs
 		/// <summary>
 		/// Gets or sets the last name of the Client.
 		/// </summary>
-		public required string LastName { get; set; }
+		public string LastName { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the email of the Client.
 		/// </summary>
-		public required string Email { get; set; }
+		public string Email { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the phone number of the Client.
 		/// </summary>
-		public required string PhoneNumber { get; set; }
+		public string PhoneNumber { get; set; } = string.Empty;
 
 		public string? ImgUrl { get; set; }
 		/// <summary>
@@ -41,7 +41,7 @@ namespace QuickProFixer.DTOs
 		public int AddressId { get; set; }
 		public AddressDto Address { get; set; } = null!; // Navigation property
 
-		public required string Location { get; set; }
+		public string Location { get; set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the verification document of the Client.
