@@ -76,7 +76,13 @@ namespace QuickProFixer
 			{
 				options.AddPolicy("AllowSpecificOrigin",
 					builder => builder
-						.WithOrigins("http://localhost:5173") // Add your frontend URL here
+						// .WithOrigins("http://localhost:5173") // local machine frontend
+						.WithOrigins(
+							"http://localhost:5173", // local machine frontend
+							"http://172.31.41.59:5173",// private IP of the frontend
+							"http://63.177.70.65:5173",  // pulic IP of the frontend
+							"http://ec2-63-177-70-65.eu-central-1.compute.amazonaws.com:5173" // pulic IP of the frontend
+							)
 						.AllowAnyHeader()
 						.AllowAnyMethod());
 			});
