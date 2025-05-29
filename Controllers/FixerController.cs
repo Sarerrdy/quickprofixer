@@ -32,7 +32,7 @@ namespace QuickProFixer.Controllers
 			if (fixers == null)
 			{
 				_logger.LogWarning("No fixers found");
-				return NotFound("No fixers found.");
+				return NotFound("No fixers found from 'GetAllFixers'.");
 			}
 			return Ok(fixers);
 		}
@@ -49,10 +49,11 @@ namespace QuickProFixer.Controllers
 		{
 			_logger.LogInformation("Searching fixers with skillCategory: {SkillCategory}, location: {Location}, minRating: {MinRating}", skillCategory, location, minRating);
 			var fixers = await _fixerService.SearchFixersAsync(skillCategory, location, minRating);
+			//_logger.LogInformation("Returned fixers {@fixers}", fixers);
 			if (fixers == null)
 			{
 				_logger.LogWarning("No fixers found for the given criteria");
-				return NotFound("No fixers found.");
+				return NotFound("No fixers found for 'SearchFixers'.");
 			}
 			return Ok(fixers);
 		}

@@ -45,6 +45,7 @@ namespace QuickProFixer.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<AddressDto>> GetAddressById(int id)
 		{
+
 			_logger.LogInformation("Getting address details for ID: {Id}", id);
 			var address = await _addressService.GetAddressByIdAsync(id);
 			if (address == null)

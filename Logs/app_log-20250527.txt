@@ -1,0 +1,381 @@
+2025-05-27T15:34:30.6007088+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2025-05-27T15:34:30.6208368+02:00  [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. (a4825afd)
+2025-05-27T15:34:30.6453545+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result" (0723d8ff)
+2025-05-27T15:34:30.7647445+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;" (0723d8ff)
+2025-05-27T15:34:30.7766951+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2025-05-27T15:34:30.7778073+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');" (0723d8ff)
+2025-05-27T15:34:30.7812252+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2025-05-27T15:34:30.8003125+02:00  [INF] Applying migration '"20250527133355_AddMoreFixersSeed"'. (0e2ac64d)
+2025-05-27T15:34:30.9403300+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'd089b4c7-8660-4b05-a0fc-a02b18f6be47', [PasswordHash] = N'AQAAAAIAAYagAAAAEHbIVIqVt6y3s8gbuJ2XNCuUqUh3Sfw/g9KoFYSEWPFV/yGdIVC1iAm9GYaopd8A8g==', [SecurityStamp] = N'9988c775-e019-4590-9d99-af259b621848'
+WHERE [Id] = N'client1';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9412529+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'3c4886e0-4982-4811-971e-16b5f67cff67', [PasswordHash] = N'AQAAAAIAAYagAAAAEE+PLrzKLKja/rniXprut6EMuBli4xLjclzPavxrWhr2giXaJJfvgy+20W63zVVpvQ==', [SecurityStamp] = N'b5683447-b595-46b3-847b-b52e06e1c5f9'
+WHERE [Id] = N'client2';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9419302+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'ad8346d7-d5fe-4fde-80b6-9ab9a130c0d9', [PasswordHash] = N'AQAAAAIAAYagAAAAEA9s5hQPgU1gDRZDJfoEjzFm7xJvy0G2oj3lZ2IX8ZeLjJVXwJqABHWFUwUTvvgp7A==', [SecurityStamp] = N'e61cc05a-7518-4c56-a01c-de9709a6c729'
+WHERE [Id] = N'fixer1';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9425748+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'fc2a039b-b6d7-483a-a229-46ce21cba634', [PasswordHash] = N'AQAAAAIAAYagAAAAEP3r7l1PAjXrnQtyWjgxGxD3OjkzaonRGCpdXkYSTEktZ3M05Po8nAY9dLqrqAo06Q==', [SecurityStamp] = N'e9c71101-2fb7-4d5e-8b4a-e23b06b09ce0'
+WHERE [Id] = N'fixer2';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9431847+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'143ea4af-1fc8-4b2f-a695-f41ed8f44128', [PasswordHash] = N'AQAAAAIAAYagAAAAEBqHlBQx+GYuo9EJn8jYJWlPGS2dw6+ahgnBd3xuQaWB5Exn9+yiZUr1AOazrIKvPQ==', [SecurityStamp] = N'a2e9f73d-c34a-4bf7-b99a-b3f21ba711f7'
+WHERE [Id] = N'fixer3';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9438686+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'757f3705-fb08-433b-9b91-b9d05bd85491', [PasswordHash] = N'AQAAAAIAAYagAAAAEAxaaaptHOCS1Zn/kv64Uc8mUs7Y1blEwPEM5F4JgtmeBwMQeEBAO637C7JkIDy9nQ==', [SecurityStamp] = N'05b54de4-c4e2-46d6-a363-89c1349b9712'
+WHERE [Id] = N'fixer4';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9443954+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""UPDATE [AspNetUsers] SET [ConcurrencyStamp] = N'd058cadc-ed22-4016-9c3a-42b174927198', [PasswordHash] = N'AQAAAAIAAYagAAAAEI/ky+yhdv29AC9t/tn34Wj2eThs9PlpfL9aScvfqASU2QbfKQoLEc+/2zmj+TQmzw==', [SecurityStamp] = N'c4957d0b-25dd-428a-b09a-01e6012f900b'
+WHERE [Id] = N'fixer5';
+SELECT @@ROWCOUNT;" (0723d8ff)
+2025-05-27T15:34:30.9762350+02:00  [INF] Executed DbCommand ("31"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'AccessFailedCount', N'ConcurrencyStamp', N'Email', N'EmailConfirmed', N'FirstName', N'LastName', N'LockoutEnabled', N'LockoutEnd', N'MiddleName', N'NormalizedEmail', N'NormalizedUserName', N'PasswordHash', N'PhoneNumber', N'PhoneNumberConfirmed', N'SecurityStamp', N'TwoFactorEnabled', N'UserName') AND [object_id] = OBJECT_ID(N'[AspNetUsers]'))
+    SET IDENTITY_INSERT [AspNetUsers] ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [LastName], [LockoutEnabled], [LockoutEnd], [MiddleName], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (N'fixer10', 0, N'9aced496-d929-4551-8ad4-c4fb240f359a', N'janet.opara@example.com', CAST(1 AS bit), N'Janet', N'Opara', CAST(0 AS bit), NULL, N'', N'JANET.OPARA@EXAMPLE.COM', N'JANET.OPARA@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEFwky2IMCQWIe6OXr1/IhDf9jkre4kdZF3oXPGVm6Oxf/Mt1qeHfmmS2otqzM2h1Pg==', N'9123456780', CAST(1 AS bit), N'853662ab-d443-485a-88d4-583b4876e063', CAST(0 AS bit), N'janet.opara@example.com'),
+(N'fixer11', 0, N'0b6a2afb-e38d-4c36-8618-c361aaa4de64', N'kingsley.eze@example.com', CAST(1 AS bit), N'Kingsley', N'Eze', CAST(0 AS bit), NULL, N'', N'KINGSLEY.EZE@EXAMPLE.COM', N'KINGSLEY.EZE@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEBi6ozXZOEGLttV4cLKzgMh1hsPJ8JCx11T+pmsbeYOKgU7POLxqsI7zhYm6IEbCRQ==', N'9234567801', CAST(1 AS bit), N'dc9d1b9d-9ecb-4afe-862a-2795891538ad', CAST(0 AS bit), N'kingsley.eze@example.com'),
+(N'fixer12', 0, N'ff6ea50d-3c33-420b-a084-3d4350b2eeab', N'linda.george@example.com', CAST(1 AS bit), N'Linda', N'George', CAST(0 AS bit), NULL, N'', N'LINDA.GEORGE@EXAMPLE.COM', N'LINDA.GEORGE@EXAMPLE.COM', N'AQAAAAIAAYagAAAAELkAbrmBJRLwVdTYsVAmcTAwXTncSVUHLklAukmTKJWxSGfp4Bw+9G1awkUYqqJNyA==', N'9345678012', CAST(1 AS bit), N'7cdb1681-2855-4c1c-a12a-debb2586b80d', CAST(0 AS bit), N'linda.george@example.com'),
+(N'fixer13', 0, N'b733fc40-b838-4976-8a53-600dd0310d9c', N'michael.ibrahim@example.com', CAST(1 AS bit), N'Michael', N'Ibrahim', CAST(0 AS bit), NULL, N'', N'MICHAEL.IBRAHIM@EXAMPLE.COM', N'MICHAEL.IBRAHIM@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEMGVu5YOt3cRVqFxdAByO95+YtBp+F/FKZaCI99XOcZXRKBnz6u0c3vAKzFVXljq2w==', N'9456780123', CAST(1 AS bit), N'd48bbc71-d10e-4908-bf98-1599ef194999', CAST(0 AS bit), N'michael.ibrahim@example.com'),
+(N'fixer14', 0, N'ee54a15c-cab3-4f7a-bd5c-f0a1eb153a70', N'ngozi.okafor@example.com', CAST(1 AS bit), N'Ngozi', N'Okafor', CAST(0 AS bit), NULL, N'', N'NGOZI.OKAFOR@EXAMPLE.COM', N'NGOZI.OKAFOR@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEOOWv5VmbaLrbJdhPuOn3EQZFNEg3XwrqL0os7XXKBeegxr8dEiz9YQUIxk0q/tnlw==', N'9567801234', CAST(1 AS bit), N'85025c35-36d8-4fd1-b3e3-a2267f08f9bf', CAST(0 AS bit), N'ngozi.okafor@example.com'),
+(N'fixer15', 0, N'c137752e-a989-47f1-add0-1608894402f0', N'olu.adebayo@example.com', CAST(1 AS bit), N'Olu', N'Adebayo', CAST(0 AS bit), NULL, N'', N'OLU.ADEBAYO@EXAMPLE.COM', N'OLU.ADEBAYO@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEF/zsYAsP6zlPXRzaHJNuNaXZ+gtn+hwHXrvK7+EPcKW+35+0ycrgHroJbIs70wmug==', N'9678012345', CAST(1 AS bit), N'e057fd43-1a80-4e8a-9101-7d50d7046aa0', CAST(0 AS bit), N'olu.adebayo@example.com'),
+(N'fixer16', 0, N'6893752e-b4e6-4382-8b5e-314e892d9077', N'patience.uche@example.com', CAST(1 AS bit), N'Patience', N'Uche', CAST(0 AS bit), NULL, N'', N'PATIENCE.UCHE@EXAMPLE.COM', N'PATIENCE.UCHE@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEFx4TueA/6xZORBPJNw6kHDFNxKzeqXG9OaY4rbOQmVYM8k9sbDBxOIVDQanUPPmkQ==', N'9780123456', CAST(1 AS bit), N'beaa7b8a-1bf9-4aaa-af46-0abaa805ebdc', CAST(0 AS bit), N'patience.uche@example.com'),
+(N'fixer17', 0, N'd6014fe9-7af5-412f-98d2-535a29a0e4e6', N'samuel.iroegbu@example.com', CAST(1 AS bit), N'Samuel', N'Iroegbu', CAST(0 AS bit), NULL, N'', N'SAMUEL.IROEGBU@EXAMPLE.COM', N'SAMUEL.IROEGBU@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEPg1Y9h+xh/MUdTlz9oqda/gtY7CY8q5xo7mAGUleH3I0a0Zh+ociyAvNM+bLfWRGQ==', N'9891234567', CAST(1 AS bit), N'8bebc1aa-e7e5-44ab-b744-1a28b27029a3', CAST(0 AS bit), N'samuel.iroegbu@example.com'),
+(N'fixer18', 0, N'cc7b7848-4cae-4ad8-a062-bd63fc7ace92', N'tunde.salami@example.com', CAST(1 AS bit), N'Tunde', N'Salami', CAST(0 AS bit), NULL, N'', N'TUNDE.SALAMI@EXAMPLE.COM', N'TUNDE.SALAMI@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEB/Oq1s1KUs5sVP5ro+FGrdh+uE1+jrb4mRYBH+DfN91ENwIA/f3gATs5Bp+ZznYjA==', N'9901234567', CAST(1 AS bit), N'e72805fa-82f0-4c9f-9b9d-886423f81ff5', CAST(0 AS bit), N'tunde.salami@example.com'),
+(N'fixer19', 0, N'ef807cb2-2231-48f7-a57d-9b1e4a99303b', N'uche.nwachukwu@example.com', CAST(1 AS bit), N'Uche', N'Nwachukwu', CAST(0 AS bit), NULL, N'', N'UCHE.NWACHUKWU@EXAMPLE.COM', N'UCHE.NWACHUKWU@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEMIrIgsapG4l5Xx1ufT13jFrEz+gbFWOu8hfj3xnpy4QzdKJ+wpR/2Mp61s9i6b6XQ==', N'9012345671', CAST(1 AS bit), N'5491cda5-cbd9-4207-a5f8-98c13c72c437', CAST(0 AS bit), N'uche.nwachukwu@example.com'),
+(N'fixer20', 0, N'08b13ecd-afba-4ca5-b93d-e4a5706562ef', N'victoria.okeke@example.com', CAST(1 AS bit), N'Victoria', N'Okeke', CAST(0 AS bit), NULL, N'', N'VICTORIA.OKEKE@EXAMPLE.COM', N'VICTORIA.OKEKE@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEEzl0KKwW+9/t1pCLpn1DYoRUx/9WJCK5PREzhrXzSAN5CtxRrbm1WxKRZdSF2gkEQ==', N'9123456712', CAST(1 AS bit), N'6bf2741d-121a-41fd-bbfa-a76df0681448', CAST(0 AS bit), N'victoria.okeke@example.com'),
+(N'fixer6', 0, N'2747fa15-5479-4a03-a8e7-e0e543f48fe7', N'frank.edwards@example.com', CAST(1 AS bit), N'Frank', N'Edwards', CAST(0 AS bit), NULL, N'', N'FRANK.EDWARDS@EXAMPLE.COM', N'FRANK.EDWARDS@EXAMPLE.COM', N'AQAAAAIAAYagAAAAELMj8yq0dQRAmFCgK0KW/UYuogtT+X8054zAMDu7C21XdsJdsSUEIO4jQac7uev4Ow==', N'6789012345', CAST(1 AS bit), N'5d9940d2-85aa-4a4f-be76-14c291b4b71d', CAST(0 AS bit), N'frank.edwards@example.com'),
+(N'fixer7', 0, N'973e8613-f050-4c12-8285-3a7fbc03872c', N'grace.ike@example.com', CAST(1 AS bit), N'Grace', N'Ike', CAST(0 AS bit), NULL, N'', N'GRACE.IKE@EXAMPLE.COM', N'GRACE.IKE@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEIFeanQWSkFg1krKx4+TBKr6lsfTdSu+AQCDYNktOM092yZC2bfwDeWsZNifWBOcjg==', N'7890123456', CAST(1 AS bit), N'85eee421-4ef9-4294-bc18-7ee850ad705c', CAST(0 AS bit), N'grace.ike@example.com'),
+(N'fixer8', 0, N'8f3b26a7-fa86-4856-8d77-7810e11c29a1', N'henry.okoro@example.com', CAST(1 AS bit), N'Henry', N'Okoro', CAST(0 AS bit), NULL, N'', N'HENRY.OKORO@EXAMPLE.COM', N'HENRY.OKORO@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEAljWZr2TOGTDe70AUCMO2cK9XBuRLBQtjpiAUSSxIw59uKxFukEFNsxXqbdv6lqOw==', N'8901234567', CAST(1 AS bit), N'9abbc2e4-9d7f-4b20-9833-9a65b5478a75', CAST(0 AS bit), N'henry.okoro@example.com'),
+(N'fixer9', 0, N'a8fff910-59d6-4746-a60d-21f9d33af7e1', N'ifeanyi.nwosu@example.com', CAST(1 AS bit), N'Ifeanyi', N'Nwosu', CAST(0 AS bit), NULL, N'', N'IFEANYI.NWOSU@EXAMPLE.COM', N'IFEANYI.NWOSU@EXAMPLE.COM', N'AQAAAAIAAYagAAAAEDA9i7r2bJAEEqvWT4y+s7S9UyIXtQhrS7BdlTFRhf6TSBEp6OSKVAImH8zVbBUQWg==', N'9012345678', CAST(1 AS bit), N'5c450d31-8be0-42a7-ae0a-e5cccc46f058', CAST(0 AS bit), N'ifeanyi.nwosu@example.com');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'AccessFailedCount', N'ConcurrencyStamp', N'Email', N'EmailConfirmed', N'FirstName', N'LastName', N'LockoutEnabled', N'LockoutEnd', N'MiddleName', N'NormalizedEmail', N'NormalizedUserName', N'PasswordHash', N'PhoneNumber', N'PhoneNumberConfirmed', N'SecurityStamp', N'TwoFactorEnabled', N'UserName') AND [object_id] = OBJECT_ID(N'[AspNetUsers]'))
+    SET IDENTITY_INSERT [AspNetUsers] OFF;" (0723d8ff)
+2025-05-27T15:34:31.0131792+02:00  [INF] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'AddressId', N'Certifications', N'CurrentRole', N'ExperienceYears', N'ImgUrl', N'IsAvailable', N'IsVerified', N'Location', N'Portfolio', N'Rate', N'RateType', N'Rating', N'Reviews', N'SpecializationId', N'VerificationDocument') AND [object_id] = OBJECT_ID(N'[Fixers]'))
+    SET IDENTITY_INSERT [Fixers] ON;
+INSERT INTO [Fixers] ([Id], [AddressId], [Certifications], [CurrentRole], [ExperienceYears], [ImgUrl], [IsAvailable], [IsVerified], [Location], [Portfolio], [Rate], [RateType], [Rating], [Reviews], [SpecializationId], [VerificationDocument])
+VALUES (N'fixer10', 6, N'Certified Plumber', N'Fixer', 6, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio10.pdf', 44.0, N'Per Hour', 4.2999999999999998E0, N'Prompt and polite', 1, N'doc12.pdf'),
+(N'fixer11', 7, N'Master Plumber', N'Fixer', 12, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio11.pdf', 52.0, N'Per Hour', 4.5999999999999996E0, N'Highly recommended', 1, N'doc13.pdf'),
+(N'fixer12', 1, N'Masonry Expert', N'Fixer', 9, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio12.pdf', 46.0, N'Per Hour', 4.5E0, N'Solid work', 3, N'doc14.pdf'),
+(N'fixer13', 2, N'Certified Mason', N'Fixer', 7, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio13.pdf', 44.0, N'Per Hour', 4.5999999999999996E0, N'Very creative', 3, N'doc15.pdf'),
+(N'fixer14', 4, N'Masonry Specialist', N'Fixer', 6, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio14.pdf', 43.0, N'Per Hour', 4.4000000000000004E0, N'Dependable', 3, N'doc16.pdf'),
+(N'fixer15', 5, N'Expert Tiler', N'Fixer', 8, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio15.pdf', 44.0, N'Per Hour', 4.7000000000000002E0, N'Very neat finish', 4, N'doc17.pdf'),
+(N'fixer16', 6, N'Certified Tiler', N'Fixer', 7, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio16.pdf', 43.0, N'Per Hour', 4.5E0, N'Great attention to detail', 4, N'doc18.pdf'),
+(N'fixer17', 7, N'Tiling Specialist', N'Fixer', 5, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio17.pdf', 41.0, N'Per Hour', 4.5999999999999996E0, N'Fast and reliable', 4, N'doc19.pdf'),
+(N'fixer18', 1, N'Expert Screeder', N'Fixer', 9, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio18.pdf', 47.0, N'Per Hour', 4.7999999999999998E0, N'Smooth finish', 5, N'doc20.pdf'),
+(N'fixer19', 2, N'Certified Screeder', N'Fixer', 8, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio19.pdf', 46.0, N'Per Hour', 4.7000000000000002E0, N'Very professional', 5, N'doc21.pdf'),
+(N'fixer20', 3, N'Screeding Specialist', N'Fixer', 6, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio20.pdf', 45.0, N'Per Hour', 4.5999999999999996E0, N'Great attention to detail', 5, N'doc22.pdf'),
+(N'fixer6', 2, N'Licensed Electrician', N'Fixer', 6, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio6.pdf', 43.0, N'Per Hour', 4.8499999999999996E0, N'Very reliable and professional', 2, N'doc8.pdf'),
+(N'fixer7', 3, N'Electrical Engineer', N'Fixer', 4, N'', CAST(1 AS bit), CAST(1 AS bit), N'Portharcourt', N'portfolio7.pdf', 38.0, N'Per Hour', 4.7000000000000002E0, N'Quick and efficient', 2, N'doc9.pdf'),
+(N'fixer8', 4, N'Certified Electrician', N'Fixer', 7, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio8.pdf', 41.0, N'Per Hour', 4.5999999999999996E0, N'Good communication', 2, N'doc10.pdf'),
+(N'fixer9', 5, N'Licensed Plumber', N'Fixer', 8, N'', CAST(1 AS bit), CAST(1 AS bit), N'Eleme', N'portfolio9.pdf', 47.0, N'Per Hour', 4.4000000000000004E0, N'Very neat work', 1, N'doc11.pdf');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'AddressId', N'Certifications', N'CurrentRole', N'ExperienceYears', N'ImgUrl', N'IsAvailable', N'IsVerified', N'Location', N'Portfolio', N'Rate', N'RateType', N'Rating', N'Reviews', N'SpecializationId', N'VerificationDocument') AND [object_id] = OBJECT_ID(N'[Fixers]'))
+    SET IDENTITY_INSERT [Fixers] OFF;" (0723d8ff)
+2025-05-27T15:34:31.0149337+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250527133355_AddMoreFixersSeed', N'9.0.0');" (0723d8ff)
+2025-05-27T15:34:31.0242360+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result" (0723d8ff)
+2025-05-27T18:48:29.0046186+02:00  [INF] Application has started! Logging to file is enabled. (1a1be420)
+2025-05-27T18:48:29.0109446+02:00  [INF] Current Environment: Development (c43d4319)
+2025-05-27T18:48:29.0110594+02:00  [INF] Connection String: Server=(localdb)\mssqllocaldb;Database=QuickProFixerDb;Trusted_Connection=True;MultipleActiveResultSets=true (68d8e346)
+2025-05-27T18:48:29.0488395+02:00  [INF] User profile is available. Using '"C:\Users\sarer\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-05-27T18:48:29.4583992+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.Register (quickprofixer) (4d82506e)
+2025-05-27T18:48:29.4584508+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.RegisterFixer (quickprofixer) (ef7d86f9)
+2025-05-27T18:48:29.4584580+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.RegisterClient (quickprofixer) (6ca9b860)
+2025-05-27T18:48:29.4584722+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.UploadVerificationDocument (quickprofixer) (d7011a2f)
+2025-05-27T18:48:29.4584795+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.CheckRegistrationStatus (quickprofixer) (e41720b2)
+2025-05-27T18:48:29.4584860+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.GetAllAddresses (quickprofixer) (6e24883d)
+2025-05-27T18:48:29.4584919+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.GetAddressById (quickprofixer) (17624d23)
+2025-05-27T18:48:29.4585017+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.CreateAddress (quickprofixer) (7c06ad4a)
+2025-05-27T18:48:29.4585084+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.UpdateAddress (quickprofixer) (38a5681e)
+2025-05-27T18:48:29.4585143+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.DeleteAddress (quickprofixer) (e3b252d0)
+2025-05-27T18:48:29.4585201+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.ReviewProfiles (quickprofixer) (ab42f290)
+2025-05-27T18:48:29.4585300+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.ApproveProfile (quickprofixer) (052cbdce)
+2025-05-27T18:48:29.4585361+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.GetPlatformAnalytics (quickprofixer) (969fee1b)
+2025-05-27T18:48:29.4585417+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Login (quickprofixer) (fbc4a1b2)
+2025-05-27T18:48:29.4585474+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Logout (quickprofixer) (801158bc)
+2025-05-27T18:48:29.4585569+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Me (quickprofixer) (38b99098)
+2025-05-27T18:48:29.4585628+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.CreateBooking (quickprofixer) (91bf4d1b)
+2025-05-27T18:48:29.4585691+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.GetBookingsForClient (quickprofixer) (a12a78ab)
+2025-05-27T18:48:29.4585775+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.GetBookingById (quickprofixer) (d8ecb63b)
+2025-05-27T18:48:29.4585839+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.UpdateBookingStatus (quickprofixer) (53536645)
+2025-05-27T18:48:29.4585900+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.ConfirmJobCompletion (quickprofixer) (0f4e09a0)
+2025-05-27T18:48:29.4585963+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.SendBookingNotification (quickprofixer) (3af4cff2)
+2025-05-27T18:48:29.4586094+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.DashboardController.GetClientDashboard (quickprofixer) (3cbf6997)
+2025-05-27T18:48:29.4586159+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.DashboardController.GetFixerDashboard (quickprofixer) (27160f2e)
+2025-05-27T18:48:29.4586218+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.GetAllFixers (quickprofixer) (a8e60f4d)
+2025-05-27T18:48:29.4586329+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer) (4b12f6a7)
+2025-05-27T18:48:29.4586391+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.FilterFixers (quickprofixer) (72d11049)
+2025-05-27T18:48:29.4586448+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.GetFixerById (quickprofixer) (5f9b73f3)
+2025-05-27T18:48:29.4586599+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.CreateFixRequest (quickprofixer) (75a814c2)
+2025-05-27T18:48:29.4586757+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.GetAllFixRequestsForClient (quickprofixer) (ef11fa41)
+2025-05-27T18:48:29.4586822+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.GetFixRequestById (quickprofixer) (2c4c43e8)
+2025-05-27T18:48:29.4586931+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.AcceptFixRequest (quickprofixer) (a3c15bd9)
+2025-05-27T18:48:29.4587070+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.RejectFixRequest (quickprofixer) (ae7bf890)
+2025-05-27T18:48:29.4587138+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.ProcessPayment (quickprofixer) (797ea85d)
+2025-05-27T18:48:29.4587200+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.CompleteClientPayment (quickprofixer) (6b57d91a)
+2025-05-27T18:48:29.4587259+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.CompleteFixerPayment (quickprofixer) (607fd5d5)
+2025-05-27T18:48:29.4587357+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.RefundPayment (quickprofixer) (767c75d2)
+2025-05-27T18:48:29.4587418+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.GenerateInvoice (quickprofixer) (d126cb8d)
+2025-05-27T18:48:29.4587479+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.CreateFixerProfile (quickprofixer) (d44b26ab)
+2025-05-27T18:48:29.4587539+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.UpdateFixerProfile (quickprofixer) (c806e782)
+2025-05-27T18:48:29.4587641+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.GetFixerProfile (quickprofixer) (a2973079)
+2025-05-27T18:48:29.4587703+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.CreateClientProfile (quickprofixer) (6d147396)
+2025-05-27T18:48:29.4587762+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.UpdateClientProfile (quickprofixer) (40b82f98)
+2025-05-27T18:48:29.4587860+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.GetClientProfile (quickprofixer) (8d7aaffc)
+2025-05-27T18:48:29.4587921+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.CreateQuote (quickprofixer) (76ae86d8)
+2025-05-27T18:48:29.4587980+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.GetAllQuotes (quickprofixer) (610a08c8)
+2025-05-27T18:48:29.4588036+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.GetQuoteById (quickprofixer) (8af51752)
+2025-05-27T18:48:29.4588122+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.SubmitFixerRating (quickprofixer) (27ad0052)
+2025-05-27T18:48:29.4588276+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.SubmitClientRating (quickprofixer) (36bcd9e8)
+2025-05-27T18:48:29.4588343+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.GetFixerRatings (quickprofixer) (167e67d4)
+2025-05-27T18:48:29.4588400+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.GetClientRatings (quickprofixer) (e602c5a6)
+2025-05-27T18:48:29.4588522+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.GetAllServices (quickprofixer) (3a34c504)
+2025-05-27T18:48:29.4588584+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.GetServiceById (quickprofixer) (5ac4e707)
+2025-05-27T18:48:29.4588644+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.CreateService (quickprofixer) (a1275e92)
+2025-05-27T18:48:29.4588757+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.UpdateService (quickprofixer) (f0b15fa3)
+2025-05-27T18:48:29.4588819+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.DeleteService (quickprofixer) (1b4f4576)
+2025-05-27T18:48:29.4594500+02:00  [INF] Registered endpoint: /notificationHub/negotiate (178f3008)
+2025-05-27T18:48:29.4594864+02:00  [INF] Registered endpoint: /notificationHub (dee1129b)
+2025-05-27T18:48:29.4599984+02:00  [INF] Application has started and is listening for requests. (c68adc30)
+2025-05-27T18:48:29.5074409+02:00  [INF] Now listening on: "http://localhost:5199" (d826f4b8)
+2025-05-27T18:48:29.5094629+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-05-27T18:48:29.5102016+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-05-27T18:48:29.5102709+02:00  [INF] Content root path: "C:\ALX\final_project\quickprofixer" (cc26f24e)
+2025-05-27T19:17:49.7105031+02:00 0HNCT89K1I5EF:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - "application/json" null (d509f86a)
+2025-05-27T19:17:49.7350878+02:00 0HNCT89K1I5EF:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2025-05-27T19:17:49.8686191+02:00 0HNCT89K1I5EF:00000001 [INF] Failed to validate the token. (616bef97)
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '28/01/2025 01:40:00', Current time (UTC): '27/05/2025 17:17:49'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27T19:17:49.8729491+02:00 0HNCT89K1I5EF:00000001 [INF] "Bearer" was not authenticated. Failure message: "IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '28/01/2025 01:40:00', Current time (UTC): '27/05/2025 17:17:49'." (48071232)
+2025-05-27T19:17:49.8756263+02:00 0HNCT89K1I5EF:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T19:17:49.8788572+02:00 0HNCT89K1I5EF:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T19:17:49.8996555+02:00 0HNCT89K1I5EF:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T19:17:50.0487280+02:00 0HNCT89K1I5EF:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T19:17:50.0541848+02:00 0HNCT89K1I5EF:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T19:17:53.1619360+02:00 0HNCT89K1I5EF:00000001 [INF] Executed DbCommand ("47"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T19:17:53.2057473+02:00 0HNCT89K1I5EF:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T19:17:53.3059095+02:00 0HNCT89K1I5EF:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 3398.7538ms (afa2e885)
+2025-05-27T19:17:53.3065608+02:00 0HNCT89K1I5EF:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T19:17:53.3068220+02:00 0HNCT89K1I5EF:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T19:17:53.3177436+02:00 0HNCT89K1I5EF:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 3611.8997ms (74253ad3)
+2025-05-27T19:35:52.9141757+02:00 0HNCT89K1I5EG:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - null null (d509f86a)
+2025-05-27T19:35:52.9201095+02:00 0HNCT89K1I5EG:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T19:35:52.9204030+02:00 0HNCT89K1I5EG:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T19:35:52.9210224+02:00 0HNCT89K1I5EG:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T19:35:52.9395446+02:00 0HNCT89K1I5EG:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T19:35:52.9396415+02:00 0HNCT89K1I5EG:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T19:35:52.9894104+02:00 0HNCT89K1I5EG:00000001 [INF] Executed DbCommand ("13"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T19:35:52.9910804+02:00 0HNCT89K1I5EG:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T19:35:52.9917957+02:00 0HNCT89K1I5EG:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 70.6284ms (afa2e885)
+2025-05-27T19:35:52.9919064+02:00 0HNCT89K1I5EG:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T19:35:52.9920224+02:00 0HNCT89K1I5EG:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T19:35:52.9926054+02:00 0HNCT89K1I5EG:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 78.5442ms (74253ad3)
+2025-05-27T19:35:53.1369014+02:00 0HNCT89K1I5EG:00000002 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/favicon.ico""" - null null (d509f86a)
+2025-05-27T19:35:53.1397881+02:00 0HNCT89K1I5EG:00000002 [INF] Incoming request: GET /favicon.ico (33046220)
+2025-05-27T19:35:53.1401097+02:00 0HNCT89K1I5EG:00000002 [INF] Outgoing response: 404 (8dd38f19)
+2025-05-27T19:35:53.1406080+02:00 0HNCT89K1I5EG:00000002 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/favicon.ico""" - 404 0 null 3.5527ms (74253ad3)
+2025-05-27T19:35:53.1415277+02:00 0HNCT89K1I5EG:00000002 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5199""""/favicon.ico", Response status code: 404 (e353595a)
+2025-05-27T22:11:01.8169193+02:00  [INF] Application is shutting down... (90f52c38)
+2025-05-27T22:11:13.9656863+02:00  [INF] Application has started! Logging to file is enabled. (1a1be420)
+2025-05-27T22:11:13.9715379+02:00  [INF] Current Environment: Development (c43d4319)
+2025-05-27T22:11:13.9716000+02:00  [INF] Connection String: Server=(localdb)\mssqllocaldb;Database=QuickProFixerDb;Trusted_Connection=True;MultipleActiveResultSets=true (68d8e346)
+2025-05-27T22:11:14.0112477+02:00  [INF] User profile is available. Using '"C:\Users\sarer\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-05-27T22:11:14.2221128+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.Register (quickprofixer) (4d82506e)
+2025-05-27T22:11:14.2221454+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.RegisterFixer (quickprofixer) (ef7d86f9)
+2025-05-27T22:11:14.2221658+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.RegisterClient (quickprofixer) (6ca9b860)
+2025-05-27T22:11:14.2221737+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.UploadVerificationDocument (quickprofixer) (d7011a2f)
+2025-05-27T22:11:14.2221803+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AccountController.CheckRegistrationStatus (quickprofixer) (e41720b2)
+2025-05-27T22:11:14.2221872+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.GetAllAddresses (quickprofixer) (6e24883d)
+2025-05-27T22:11:14.2221987+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.GetAddressById (quickprofixer) (17624d23)
+2025-05-27T22:11:14.2222055+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.CreateAddress (quickprofixer) (7c06ad4a)
+2025-05-27T22:11:14.2222122+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.UpdateAddress (quickprofixer) (38a5681e)
+2025-05-27T22:11:14.2222276+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AddressController.DeleteAddress (quickprofixer) (e3b252d0)
+2025-05-27T22:11:14.2222626+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.ReviewProfiles (quickprofixer) (ab42f290)
+2025-05-27T22:11:14.2222824+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.ApproveProfile (quickprofixer) (052cbdce)
+2025-05-27T22:11:14.2222907+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AdminController.GetPlatformAnalytics (quickprofixer) (969fee1b)
+2025-05-27T22:11:14.2223026+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Login (quickprofixer) (fbc4a1b2)
+2025-05-27T22:11:14.2223093+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Logout (quickprofixer) (801158bc)
+2025-05-27T22:11:14.2223152+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.AuthController.Me (quickprofixer) (38b99098)
+2025-05-27T22:11:14.2223246+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.CreateBooking (quickprofixer) (91bf4d1b)
+2025-05-27T22:11:14.2223463+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.GetBookingsForClient (quickprofixer) (a12a78ab)
+2025-05-27T22:11:14.2223554+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.GetBookingById (quickprofixer) (d8ecb63b)
+2025-05-27T22:11:14.2223620+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.UpdateBookingStatus (quickprofixer) (53536645)
+2025-05-27T22:11:14.2223746+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.ConfirmJobCompletion (quickprofixer) (0f4e09a0)
+2025-05-27T22:11:14.2224054+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.BookingController.SendBookingNotification (quickprofixer) (3af4cff2)
+2025-05-27T22:11:14.2224182+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.DashboardController.GetClientDashboard (quickprofixer) (3cbf6997)
+2025-05-27T22:11:14.2224364+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.DashboardController.GetFixerDashboard (quickprofixer) (27160f2e)
+2025-05-27T22:11:14.2224543+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.GetAllFixers (quickprofixer) (a8e60f4d)
+2025-05-27T22:11:14.2224622+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer) (4b12f6a7)
+2025-05-27T22:11:14.2224686+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.FilterFixers (quickprofixer) (72d11049)
+2025-05-27T22:11:14.2224807+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixerController.GetFixerById (quickprofixer) (5f9b73f3)
+2025-05-27T22:11:14.2224879+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.CreateFixRequest (quickprofixer) (75a814c2)
+2025-05-27T22:11:14.2224946+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.GetAllFixRequestsForClient (quickprofixer) (ef11fa41)
+2025-05-27T22:11:14.2225010+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.GetFixRequestById (quickprofixer) (2c4c43e8)
+2025-05-27T22:11:14.2225190+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.AcceptFixRequest (quickprofixer) (a3c15bd9)
+2025-05-27T22:11:14.2225298+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.FixRequestController.RejectFixRequest (quickprofixer) (ae7bf890)
+2025-05-27T22:11:14.2225382+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.ProcessPayment (quickprofixer) (797ea85d)
+2025-05-27T22:11:14.2225540+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.CompleteClientPayment (quickprofixer) (6b57d91a)
+2025-05-27T22:11:14.2225808+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.CompleteFixerPayment (quickprofixer) (607fd5d5)
+2025-05-27T22:11:14.2225991+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.RefundPayment (quickprofixer) (767c75d2)
+2025-05-27T22:11:14.2226194+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.PaymentController.GenerateInvoice (quickprofixer) (d126cb8d)
+2025-05-27T22:11:14.2226396+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.CreateFixerProfile (quickprofixer) (d44b26ab)
+2025-05-27T22:11:14.2226531+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.UpdateFixerProfile (quickprofixer) (c806e782)
+2025-05-27T22:11:14.2226600+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.GetFixerProfile (quickprofixer) (a2973079)
+2025-05-27T22:11:14.2226663+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.CreateClientProfile (quickprofixer) (6d147396)
+2025-05-27T22:11:14.2226756+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.UpdateClientProfile (quickprofixer) (40b82f98)
+2025-05-27T22:11:14.2226823+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ProfileController.GetClientProfile (quickprofixer) (8d7aaffc)
+2025-05-27T22:11:14.2226922+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.CreateQuote (quickprofixer) (76ae86d8)
+2025-05-27T22:11:14.2227143+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.GetAllQuotes (quickprofixer) (610a08c8)
+2025-05-27T22:11:14.2227503+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.QuoteController.GetQuoteById (quickprofixer) (8af51752)
+2025-05-27T22:11:14.2227587+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.SubmitFixerRating (quickprofixer) (27ad0052)
+2025-05-27T22:11:14.2227656+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.SubmitClientRating (quickprofixer) (36bcd9e8)
+2025-05-27T22:11:14.2227720+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.GetFixerRatings (quickprofixer) (167e67d4)
+2025-05-27T22:11:14.2227849+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.RatingController.GetClientRatings (quickprofixer) (e602c5a6)
+2025-05-27T22:11:14.2227916+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.GetAllServices (quickprofixer) (3a34c504)
+2025-05-27T22:11:14.2227979+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.GetServiceById (quickprofixer) (5ac4e707)
+2025-05-27T22:11:14.2228047+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.CreateService (quickprofixer) (a1275e92)
+2025-05-27T22:11:14.2228280+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.UpdateService (quickprofixer) (f0b15fa3)
+2025-05-27T22:11:14.2228462+02:00  [INF] Registered endpoint: QuickProFixer.Controllers.ServiceController.DeleteService (quickprofixer) (1b4f4576)
+2025-05-27T22:11:14.2234277+02:00  [INF] Registered endpoint: /notificationHub/negotiate (178f3008)
+2025-05-27T22:11:14.2234553+02:00  [INF] Registered endpoint: /notificationHub (dee1129b)
+2025-05-27T22:11:14.2238842+02:00  [INF] Application has started and is listening for requests. (c68adc30)
+2025-05-27T22:11:14.2592484+02:00  [INF] Now listening on: "http://localhost:5199" (d826f4b8)
+2025-05-27T22:11:14.2612872+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-05-27T22:11:14.2620762+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-05-27T22:11:14.2621462+02:00  [INF] Content root path: "C:\ALX\final_project\quickprofixer" (cc26f24e)
+2025-05-27T22:26:43.5894402+02:00 0HNCTBJ5Q9036:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - null null (d509f86a)
+2025-05-27T22:26:43.6073093+02:00 0HNCTBJ5Q9036:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2025-05-27T22:26:43.6486738+02:00 0HNCTBJ5Q9036:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T22:26:43.6508424+02:00 0HNCTBJ5Q9036:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T22:26:43.6686813+02:00 0HNCTBJ5Q9036:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T22:26:43.7759526+02:00 0HNCTBJ5Q9036:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:26:43.7816216+02:00 0HNCTBJ5Q9036:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:26:46.7311362+02:00 0HNCTBJ5Q9036:00000001 [INF] Executed DbCommand ("42"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T22:26:46.7909685+02:00 0HNCTBJ5Q9036:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T22:26:46.8927755+02:00 0HNCTBJ5Q9036:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 3212.9504ms (afa2e885)
+2025-05-27T22:26:46.8938198+02:00 0HNCTBJ5Q9036:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T22:26:46.8941928+02:00 0HNCTBJ5Q9036:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T22:26:46.9065890+02:00 0HNCTBJ5Q9036:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 3318.6586ms (74253ad3)
+2025-05-27T22:27:07.7493170+02:00 0HNCTBJ5Q9038:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - null null (d509f86a)
+2025-05-27T22:27:07.7595848+02:00 0HNCTBJ5Q9038:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T22:27:07.7597946+02:00 0HNCTBJ5Q9038:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T22:27:07.7623308+02:00 0HNCTBJ5Q9038:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T22:27:07.7822364+02:00 0HNCTBJ5Q9038:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:07.7823766+02:00 0HNCTBJ5Q9038:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:07.8194294+02:00 0HNCTBJ5Q9038:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T22:27:07.8223388+02:00 0HNCTBJ5Q9038:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T22:27:07.8241408+02:00 0HNCTBJ5Q9038:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 61.5713ms (afa2e885)
+2025-05-27T22:27:07.8244924+02:00 0HNCTBJ5Q9038:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T22:27:07.8249372+02:00 0HNCTBJ5Q9038:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T22:27:07.8274970+02:00 0HNCTBJ5Q9038:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 76.9459ms (74253ad3)
+2025-05-27T22:27:07.9040994+02:00 0HNCTBJ5Q9038:00000002 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/favicon.ico""" - null null (d509f86a)
+2025-05-27T22:27:07.9078507+02:00 0HNCTBJ5Q9038:00000002 [INF] Incoming request: GET /favicon.ico (33046220)
+2025-05-27T22:27:07.9093062+02:00 0HNCTBJ5Q9038:00000002 [INF] Outgoing response: 404 (8dd38f19)
+2025-05-27T22:27:07.9111897+02:00 0HNCTBJ5Q9038:00000002 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/favicon.ico""" - 404 0 null 5.6128ms (74253ad3)
+2025-05-27T22:27:07.9123070+02:00 0HNCTBJ5Q9038:00000002 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5199""""/favicon.ico", Response status code: 404 (e353595a)
+2025-05-27T22:27:17.1811954+02:00 0HNCTBJ5Q9039:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Port%20harcourt&minRating=4" - null null (d509f86a)
+2025-05-27T22:27:17.1816832+02:00 0HNCTBJ5Q9039:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T22:27:17.1817547+02:00 0HNCTBJ5Q9039:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T22:27:17.1818759+02:00 0HNCTBJ5Q9039:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T22:27:17.1867266+02:00 0HNCTBJ5Q9039:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Port harcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:17.1867867+02:00 0HNCTBJ5Q9039:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Port harcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:17.2647510+02:00 0HNCTBJ5Q9039:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T22:27:17.2652298+02:00 0HNCTBJ5Q9039:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T22:27:17.2655007+02:00 0HNCTBJ5Q9039:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 83.5644ms (afa2e885)
+2025-05-27T22:27:17.2655427+02:00 0HNCTBJ5Q9039:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T22:27:17.2655703+02:00 0HNCTBJ5Q9039:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T22:27:17.2658995+02:00 0HNCTBJ5Q9039:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Port%20harcourt&minRating=4" - 200 null "application/json; charset=utf-8" 84.7181ms (74253ad3)
+2025-05-27T22:27:58.3463640+02:00 0HNCTBJ5Q9039:00000002 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - null null (d509f86a)
+2025-05-27T22:27:58.3468877+02:00 0HNCTBJ5Q9039:00000002 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T22:27:58.3469735+02:00 0HNCTBJ5Q9039:00000002 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T22:27:58.3471276+02:00 0HNCTBJ5Q9039:00000002 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T22:27:58.3476949+02:00 0HNCTBJ5Q9039:00000002 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:58.3480616+02:00 0HNCTBJ5Q9039:00000002 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:27:58.3598822+02:00 0HNCTBJ5Q9039:00000002 [INF] Executed DbCommand ("10"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T22:27:58.3603483+02:00 0HNCTBJ5Q9039:00000002 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T22:27:58.3607563+02:00 0HNCTBJ5Q9039:00000002 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 13.4599ms (afa2e885)
+2025-05-27T22:27:58.3608690+02:00 0HNCTBJ5Q9039:00000002 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T22:27:58.3609227+02:00 0HNCTBJ5Q9039:00000002 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T22:27:58.3612990+02:00 0HNCTBJ5Q9039:00000002 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 14.9603ms (74253ad3)
+2025-05-27T22:55:15.6191944+02:00 0HNCTBJ5Q903A:00000001 [INF] Request starting "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - null null (d509f86a)
+2025-05-27T22:55:15.6199190+02:00 0HNCTBJ5Q903A:00000001 [INF] Incoming request: GET /api/fixer/search (df6f379e)
+2025-05-27T22:55:15.6200487+02:00 0HNCTBJ5Q903A:00000001 [INF] Executing endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (500cc934)
+2025-05-27T22:55:15.6202958+02:00 0HNCTBJ5Q903A:00000001 [INF] Route matched with "{action = \"SearchFixers\", controller = \"Fixer\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[QuickProFixer.DTOs.FixerDto]]] SearchFixers(System.String, System.String, Double)" on controller "QuickProFixer.Controllers.FixerController" ("quickprofixer"). (122b2fdf)
+2025-05-27T22:55:15.6216037+02:00 0HNCTBJ5Q903A:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:55:15.6217272+02:00 0HNCTBJ5Q903A:00000001 [INF] Searching fixers with skillCategory: "Electricals", location: "Portharcourt", minRating: 4 (489f9b0c)
+2025-05-27T22:55:15.6512533+02:00 0HNCTBJ5Q903A:00000001 [INF] Executed DbCommand ("13"ms) [Parameters=["@__skillCategory_0='?' (Size = 4000), @__location_1='?' (Size = 4000), @__minRating_2='?' (DbType = Double)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[FirstName], [a].[LastName], COALESCE([a].[MiddleName], N'') AS [MiddleName], COALESCE([a].[PhoneNumber], N'') AS [PhoneNumber], COALESCE([a].[Email], N'') AS [Email], [f].[SpecializationId], [s].[Name] AS [SpecializationName], [f].[Certifications], [f].[Rating], [f].[Location], [f].[IsAvailable], [f].[AddressId], [a0].[Id], [a0].[AddressLine], [a0].[Landmark], [a0].[Town], [a0].[LGA], [a0].[State], [a0].[ZipCode], [a0].[Country], [f].[VerificationDocument], [f].[IsVerified], [f].[Reviews], [f].[ExperienceYears], [f].[Portfolio], [f].[RateType], [f].[Rate]
+FROM [AspNetUsers] AS [a]
+INNER JOIN [Fixers] AS [f] ON [a].[Id] = [f].[Id]
+INNER JOIN [Services] AS [s] ON [f].[SpecializationId] = [s].[Id]
+INNER JOIN [Addresses] AS [a0] ON [f].[AddressId] = [a0].[Id]
+WHERE [s].[Name] = @__skillCategory_0 AND [f].[Location] = @__location_1 AND [f].[Rating] >= @__minRating_2" (0723d8ff)
+2025-05-27T22:55:15.6517124+02:00 0HNCTBJ5Q903A:00000001 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[QuickProFixer.DTOs.FixerDto, quickprofixer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-05-27T22:55:15.6521608+02:00 0HNCTBJ5Q903A:00000001 [INF] Executed action "QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)" in 31.7538ms (afa2e885)
+2025-05-27T22:55:15.6524269+02:00 0HNCTBJ5Q903A:00000001 [INF] Executed endpoint '"QuickProFixer.Controllers.FixerController.SearchFixers (quickprofixer)"' (99874f2b)
+2025-05-27T22:55:15.6524837+02:00 0HNCTBJ5Q903A:00000001 [INF] Outgoing response: 200 (b700a284)
+2025-05-27T22:55:15.6526867+02:00 0HNCTBJ5Q903A:00000001 [INF] Request finished "HTTP/1.1" "GET" "http"://"localhost:5199""""/api/fixer/search""?skillCategory=Electricals&location=Portharcourt&minRating=4" - 200 null "application/json; charset=utf-8" 33.5992ms (74253ad3)
